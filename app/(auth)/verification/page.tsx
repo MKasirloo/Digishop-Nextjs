@@ -75,7 +75,7 @@ export default function Page() {
             </div>
             <div className="mb-6">
               <a href="/profile/dashboard" className="w-full">
-                <button className="w-full bg-(--primary-color) text-white py-2 rounded-lg">
+                <button className="btn-primary w-full py-2" disabled={code.some(d => d === '')}>
                   تأیید کد
                 </button>
               </a>

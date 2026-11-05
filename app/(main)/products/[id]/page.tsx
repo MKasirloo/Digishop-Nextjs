@@ -1,9 +1,7 @@
 "use client";
 
 import { use, useState, useEffect } from "react";
-import Header from "../../../components/Header";
-import Footer from "../../../components/Footer";
-import * as Icons from "../../assets/icons";
+import * as Icons from "@/app/assets/icons";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import Link from "next/link";
@@ -11,8 +9,9 @@ import Image from "next/image";
 
 import "swiper/css";
 
-import products from "../../data/products";
-import brands from "../../data/brands"
+import products from "@/app/data/products";
+import brands from "@/app/data/brands"
+import Toast from "@/components/Toast";
 
 export default function Product({ params }: { params: Promise<{ id: string }>}) {
   const { id } = use(params);
@@ -27,6 +26,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
   const [timeLeft, setTimeLeft] = useState(219478);
   const [isLiked, setIsLiked] = useState(false);
   const [color, setColor] = useState(product.colors[0].name);
+  const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
     if(timeLeft <= 0)
@@ -37,14 +37,14 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
   function renderAddToCart() {
     if (cartCount === 0) {
       return (
-        <button className="w-full bg-(--primary-color) text-white p-2.5 rounded-lg my-2.5 hover:cursor-pointer" onClick={() => setCartCount(1)}>
+        <button className="btn-primary w-full p-2.5 my-2.5 hover:cursor-pointer" onClick={() => setCartCount(1)}>
           افزودن به سبد خرید
         </button>
       );
     } else {
       return (
         <div className="flex my-2.5 w-full">
-          <div className="flex flex-row-reverse justify-between items-center w-[100px] border border-gray-300 rounded-lg">
+          <div className="flex flex-row-reverse justify-between items-center w-25 border border-gray-300 rounded-lg">
             <button
               className="flex items-center h-full hover:cursor-pointer hover:bg-gray-100 transition-colors rounded-l-lg border-r border-gray-300"
               onClick={() => setCartCount(cartCount - 1)}
@@ -64,7 +64,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
               <Icons.AddIcon className="text-(--text-secondary)" />
             </button>
           </div>
-          <Link href="/cart" className="flex flex-1 items-center justify-center w-full bg-white text-(--primary-color) border-2 border-(--primary-color) p-2.5 rounded-lg mr-1 hover:cursor-pointer *:flex *:items-center">
+          <Link href="/cart" className="btn-secondary flex flex-1 items-center justify-center w-full p-2.5 rounded-lg mr-1 *:flex *:items-center text-sm">
             <span>مشاهده سبد خرید</span>
             <span>
               <Icons.ChevronLeftIcon />
@@ -77,6 +77,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
 
   return (
     <>
+      (showToast && <Toast message="کالا با موفقیت به سبد خرید اضافه شد!" type="success" />);
       <div>
         <ul className="flex gap-2 my-2.5 mx-5 text-(--text-gray)">
           <li>
@@ -88,7 +89,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
           </li>
           <span>{">"}</span>
           <li className="text-(--text-primary)!">
-            <Link href="/">گوشی موبایل</Link>
+            <Link href="/">{product.category}</Link>
           </li>
         </ul>
       </div>
@@ -130,11 +131,11 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
               </div>
             </div>
           )}
-          <div className="relative border border-gray-300 rounded-b-lg p-5 max-lg:h-100 max-lg:border-none">
+          <div className="relative border border-gray-300 rounded-b-lg p-5 max-lg:border-none flex justify-center">
             <span className="absolute left-5 top-5 bg-(--offer-color) text-white p-2 text-lg rounded-full max-lg:text-xl">
               {product.discount_percent + "%"}
             </span>
-            <Image src={currentPhoto} alt={product.name} fill className="object-contain p-2" />
+            <Image src={currentPhoto} alt={product.name} width={400} height={400} className="object-cover p-2" />
           </div>
           <Swiper
             className="my-5 flex gap-2.5 w-full"
@@ -146,7 +147,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
             {product.images.map((i) => {
               return (
                 <SwiperSlide
-                  className="w-[50px] h-[50px] border border-gray-300 rounded-lg p-1"
+                  className="w-12.5 h-12.5 border border-gray-300 rounded-lg p-1"
                   onClick={() => setCurrentPhoto(i)}
                 >
                   <Image src={i} alt={product.name} width={50} height={50} />
@@ -155,7 +156,6 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
             })}
           </Swiper>
         </div>
-
         <div className="flex-1">
           <div>
             <h2>{product.name}</h2>
@@ -228,7 +228,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
             <ul className="text-xs px-2.5 border-y-2 border-gray-300">
               {product.key_features.map(f => {
                 return(
-                  <li key={f.id} className="border-b-2 border-dotted border-gray-300 flex gap-1 py-2 [&:last-child]:border-none!">
+                  <li key={f.id} className="border-b-2 border-dotted border-gray-300 flex gap-1 py-2 last:border-none!">
                     <p className="text-(--text-secondary)">
                       {f.name + ": "}
                     </p>
@@ -242,7 +242,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
           </div>
         </div>
 
-        <div className="w-[300px] border border-gray-300 rounded-lg p-5 shadow-md h-fit max-sm:w-full">
+        <div className="w-75 border border-gray-300 rounded-lg p-5 shadow-md h-fit max-sm:w-full">
           <div>
             <div className="flex items-center gap-2.5 [&_span]:flex [&_span]:items-center">
               <span>
@@ -331,7 +331,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
                 </span>
               </div>
             </div>
-            <div className="flex items-center h-[60px]">{renderAddToCart()}</div>
+            <div className="flex items-center h-15">{renderAddToCart()}</div>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
-import { act } from "react";
-import * as Icons from "../app/assets/icons"
+import * as Icons from "@/app/assets/icons"
+import Link from "next/link";
 
-export default function ProfileSidebar({ className, active }) {
+export default function ProfileSidebar({ className, active }: { className: string, active: string }) {
   const items = [
     {
       id: 1,
@@ -29,13 +29,13 @@ export default function ProfileSidebar({ className, active }) {
     },
     {
       id: 5,
-      name: "notifications",
+      name: "messages",
       name_fa: "پیام ها",
       icon: Icons.NotificationIcon
     },
     {
       id: 6,
-      name: "account",
+      name: "info",
       name_fa: "اطلاعات حساب کاربری",
       icon: Icons.AccountIcon
     },
@@ -59,9 +59,9 @@ export default function ProfileSidebar({ className, active }) {
               09915455887
             </span>
           </div>
-          <a href="/profile/account" className="text-(--primary-color)">
+          <Link href="/profile/info" className="text-(--primary-color)">
             <Icons.EditIcon />
-          </a>
+          </Link>
         </div>
         <div className="flex justify-between p-4">
           <div className="flex flex-col justify-center items-center">
@@ -72,10 +72,10 @@ export default function ProfileSidebar({ className, active }) {
               </span>
             </div>
             <div>
-              <a href="#" className="text-(--primary-color) text-xs flex items-center pr-5">
+              <Link href="#" className="text-(--primary-color) text-xs flex items-center pr-5">
                 افزایش موجودی
                 <Icons.ChevronLeftIcon className="w-3 " />
-              </a>
+              </Link>
             </div>
           </div>
           <div className="flex gap-1 items-center text-sm">
@@ -90,8 +90,8 @@ export default function ProfileSidebar({ className, active }) {
         {items.map(i => {
           if(active === i.name) {
             return(
-              <li>
-                <a href={`profile/${i.name}`} className="w-full flex gap-1 py-2 px-4 relative
+              <li key={i.id}>
+                <Link href={`profile/${i.name}`} className="w-full flex gap-1 py-2 px-4 relative
                   before:content-['']
                   before:absolute
                   before:top-1
@@ -105,31 +105,31 @@ export default function ProfileSidebar({ className, active }) {
                   <span>
                     {i.name_fa}
                   </span>
-                </a>
+                </Link>
               </li>
             );
           }
           else if(i.name === "logout") {
             return(
-              <li>
-                <a href="/" className="w-full flex gap-1 py-2 px-4 text-red-700">
+              <li key={i.id}>
+                <Link href="/" className="w-full flex gap-1 py-2 px-4 text-red-700">
                   <i.icon />
                   <span>
                     {i.name_fa}
                   </span>
-                </a>
+                </Link>
               </li>
             );
           }
           else {
             return(
-              <li>
-                <a href={`/profile/${i.name}`} className="w-full flex gap-1 py-2 px-4">
+              <li key={i.id}>
+                <Link href={`/profile/${i.name}`} className="w-full flex gap-1 py-2 px-4">
                   <i.icon />
                   <span>
                     {i.name_fa}
                   </span>
-                </a>
+                </Link>
               </li>
             );
           }

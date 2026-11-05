@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ProductGrid from "../../components/ProductsGrid";
-import ProductsFilter from "../../components/ProductsFilter";
-import products from "../data/products";
-import * as Icons from "../assets/icons";
+import ProductGrid from "@/components/ProductsGrid";
+import ProductsFilter from "@/components/ProductsFilter";
+import products from "@/app/data/products";
+import * as Icons from "@/app/assets/icons";
 import "./Products.css";
 import { useSearchParams } from "next/navigation";
 
@@ -45,80 +45,78 @@ export default function Products() {
 
   return (
     <>
-      <>
-			<div className={`mobileFilterMenuOverlay ${isFilterMenuOpen ? "open" : ''}`} onClick={() => setIsFilterMenuOpen(false)}></div>
-				<div className={`OrderListOverlay ${isOrderByClosed ? 'hidden' : ''}`} onClick={() => setIsOrderByClosed(true)}></div>
-        <div className="productsWrapper">
-          <div className="productsContainer">
-						<div className="productsContainerTop">
-							<div className="orderBySection">
-								<div className="mobileOrderByButton">
-									<div className="orderByText" onClick={() => setIsOrderByClosed(false)}>
-										<Icons.OrderIcon />
-										<span>مرتب سازی بر اساس:</span>
-									</div>
-									<div className="currentOrderBy">
-										{orderByText[currentOrderBy]}
-									</div>
+		<div className={`mobileFilterMenuOverlay ${isFilterMenuOpen ? "open" : ''}`} onClick={() => setIsFilterMenuOpen(false)}></div>
+			<div className={`OrderListOverlay ${isOrderByClosed ? 'hidden' : ''}`} onClick={() => setIsOrderByClosed(true)}></div>
+			<div className="productsWrapper">
+				<div className="productsContainer">
+					<div className="productsContainerTop">
+						<div className="orderBySection">
+							<div className="mobileOrderByButton">
+								<div className="orderByText" onClick={() => setIsOrderByClosed(false)}>
+									<Icons.OrderIcon />
+									<span>مرتب سازی بر اساس:</span>
 								</div>
-								<div className={`orderByList ${isOrderByClosed ? 'closed' : ''}`}>
-									<button
-										className={`orderByListItem ${currentOrderBy === 'bestSelling' ? 'selected' : ''}`}
-										onClick={() => {
-											setCurrentOrderBy("bestSelling");
-											orderProducts("bestSelling");
-											setIsOrderByClosed(true);
-										}}
-									>
-										پرفروش ترین
-									</button>
-									<button
-										className={`orderByListItem ${currentOrderBy === 'cheapest' ? 'selected' : ''}`}
-										onClick={() => {
-											setCurrentOrderBy("cheapest");
-											orderProducts("cheapest");
-											setIsOrderByClosed(true);
-										}}
-									>
-										ارزان ترین
-									</button>
-									<button
-										className={`orderByListItem ${currentOrderBy === 'mostExpensive' ? 'selected' : ''}`}
-										onClick={() => {
-											setCurrentOrderBy("mostExpensive");
-											orderProducts("mostExpensive");
-											setIsOrderByClosed(true);
-										}}
-									>
-										گران ترین
-									</button>
-									<button
-										className={`orderByListItem ${currentOrderBy === 'mostPopular' ? 'selected' : ''}`}
-										onClick={() => {
-											setCurrentOrderBy("mostPopular");
-											orderProducts("mostPopular");
-											setIsOrderByClosed(true);
-										}}
-									>
-										محبوب ترین
-									</button>
+								<div className="currentOrderBy">
+									{orderByText[currentOrderBy]}
 								</div>
 							</div>
-							<button className="showFiltersButton" onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}>
-								<p>فیلترها</p>
-								<Icons.FilterIcon />
-							</button>
+							<div className={`orderByList ${isOrderByClosed ? 'closed' : ''}`}>
+								<button
+									className={`orderByListItem ${currentOrderBy === 'bestSelling' ? 'selected' : ''}`}
+									onClick={() => {
+										setCurrentOrderBy("bestSelling");
+										orderProducts("bestSelling");
+										setIsOrderByClosed(true);
+									}}
+								>
+									پرفروش ترین
+								</button>
+								<button
+									className={`orderByListItem ${currentOrderBy === 'cheapest' ? 'selected' : ''}`}
+									onClick={() => {
+										setCurrentOrderBy("cheapest");
+										orderProducts("cheapest");
+										setIsOrderByClosed(true);
+									}}
+								>
+									ارزان ترین
+								</button>
+								<button
+									className={`orderByListItem ${currentOrderBy === 'mostExpensive' ? 'selected' : ''}`}
+									onClick={() => {
+										setCurrentOrderBy("mostExpensive");
+										orderProducts("mostExpensive");
+										setIsOrderByClosed(true);
+									}}
+								>
+									گران ترین
+								</button>
+								<button
+									className={`orderByListItem ${currentOrderBy === 'mostPopular' ? 'selected' : ''}`}
+									onClick={() => {
+										setCurrentOrderBy("mostPopular");
+										orderProducts("mostPopular");
+										setIsOrderByClosed(true);
+									}}
+								>
+									محبوب ترین
+								</button>
+							</div>
 						</div>
-            <ProductGrid products={filteredProducts} />
-          </div>
-					<div className={`productFilters ${isFilterMenuOpen ? "open" : ''}`}>
-						<ProductsFilter
-							products={products}
-							setFilteredProducts={setFilteredProducts}
-						/>
+						<button className="showFiltersButton" onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}>
+							<p>فیلترها</p>
+							<Icons.FilterIcon />
+						</button>
 					</div>
-        </div>
-      </>
+					<ProductGrid products={filteredProducts} />
+				</div>
+				<div className={`productFilters ${isFilterMenuOpen ? "open" : ''}`}>
+					<ProductsFilter
+						products={products}
+						setFilteredProducts={setFilteredProducts}
+					/>
+				</div>
+			</div>
     </>
   );
 }

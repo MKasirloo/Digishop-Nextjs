@@ -11,6 +11,8 @@
   --text-secondary: #6B6B6B;
   --text-natural: #23254e;
   --text-gray: #5c5c5c;
+  --primary-hover: #3D00CC;
+  --melow-hover: #f4efff;
 }
 
 @theme inline {
@@ -59,10 +61,27 @@ input:-webkit-autofill:active {
 }
 
 .btn-primary {
-  @apply bg-(--primary-color) text-white;
+  @apply bg-(--primary-color) text-white rounded-lg disabled:cursor-not-allowed disabled:opacity-50 transition-colors hover:bg-(--primary-hover) hover:cursor-pointer;
 }
 
 .btn-secondary {
-  background: white;
-  color: var(--primary-color);
+  @apply bg-white text-(--primary-color) border-2 border-(--primary-color) rounded-lg disabled:cursor-not-allowed disabled:opacity-50 transition-colors hover:bg-(--melow-hover) hover:cursor-pointer;
+}
+
+@keyframes toastEnter {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes toastExit {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-120%);
+  }
 }

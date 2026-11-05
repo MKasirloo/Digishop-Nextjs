@@ -6,10 +6,18 @@ import categories from "../app/data/categories";
 import SearchBar from "./UI/Header/SearchBar";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Header({ cartCount = 0 }: { cartCount?: number }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCategoriesMenuOpen, setIsCategoriesMenuOpen] = useState(false);
+  const mobileNavItems = [
+    { href: "/", label: "خانه", icon: Icons.HomeIcon },
+    { href: "/categories", label: "دسته بندی ها", icon: Icons.CategoriesIcon },
+    { href: "/cart", label: "سبد خرید", icon: Icons.CartIcon },
+    { href: "/profile", label: "حساب کاربری", icon: Icons.AccountIcon }
+  ];
+  const pathname = usePathname();
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : '';
@@ -32,19 +40,19 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
           </div>
           <div className="navbar-top-left">
             <div className="flex items-center gap-2.5 whitespace-nowrap max-md:hidden!">
-              <a href="/cart">
+              <Link href="/cart">
                 <button className="relative content-center border border-gray-300 rounded-lg py-2 px-4 text-sm hover:shadow-md transition-shadow">
                   <Icons.CartIcon className="w-7 h-7" />
                   {cartCount > 0 && (<span className="absolute bottom-0 right-0 bg-(--primary-color) rounded-full w-4 h-4 text-white mr-0.5 mb-1 flex items-center justify-center text-[10px]">{cartCount}</span>)}
                 </button>
-              </a>
+              </Link>
               <div className="w-px h-6 bg-gray-200 rounded-full"></div>
-              <a href="/login" className="content-center border border-gray-300 rounded-lg py-2 px-4 text-sm flex justify-between items-center gap-2 hover:shadow-md transition-shadow">
+              <Link href="/login" className="content-center border border-gray-300 rounded-lg py-2 px-4 text-sm flex justify-between items-center gap-2 hover:shadow-md transition-shadow">
                 <Icons.LoginIcon />
                 <span>ورود</span>
                 <span style={{ fontWeight: 400 }}>|</span>
                 <span>ثبت نام</span>
-              </a>
+              </Link>
             </div>
             <button onClick={() => setIsMobileMenuOpen(true)} className="md:hidden flex size-9 items-center justify-center rounded-lg bg-white text-xl text-gray-600 shadow-md hover:text-(--primary-color)">
               <Icons.MenuIcon />
@@ -191,12 +199,12 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
                     {categories.map((category) => {
                       return (
                         <li key={category.id}>
-                          <a className="flex items-center gap-3 rounded-lg px-3 py-4 text-sm transition hover:bg-violet-50 hover:*:text-(--primary-color)!">
+                          <Link href={`products?category=${category.name}`} className="flex items-center gap-3 rounded-lg px-3 py-4 text-sm transition hover:bg-violet-50 hover:*:text-(--primary-color)!">
                             <span className="shrink-0 rounded-lg bg-violet-100 p-2">
                               <category.icon />
                             </span>
                             <span className="text-(--text-primary) transition-colors">{category.name_fa}</span>
-                          </a>
+                          </Link>
                         </li>
                       );
                     })}
@@ -226,9 +234,9 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
             </ul>
           </div>
           <div className="px-3 py-2 w-full shrink-0">
-            <a href="/profile/dashboard" className="bg-(--primary-color) text-white w-full py-2 flex justify-center items-center rounded-lg">
+            <Link href="/profile/dashboard" className="bg-(--primary-color) text-white w-full py-2 flex justify-center items-center rounded-lg">
               ورود به حساب کاربری
-            </a>
+            </Link>
           </div>
         </div>
         {isMobileMenuOpen && (
@@ -236,23 +244,20 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
         )}
 
         <div className="md:hidden py-5 px-3 fixed bottom-0 w-full z-10">
-          <div className="flex justify-between *:flex-1 *:flex *:justify-center *:flex-col *:items-center *:gap-1 backdrop-blur-2xl rounded-full px-2 py-2 *:px-2 *:py-2 *:text-sm border border-white/50">
-            <a href="/" className="text-(--primary-color) bg-gray-100/50 px-2 py-2 rounded-full backdrop-blur-2xl">
-              <Icons.HomeIcon />
-              <span>خانه</span>
-            </a>
-            <a href="/">
-              <Icons.CategoriesIcon />
-              <span>دسته بندی</span>
-            </a>
-            <a href="/cart">
-              <Icons.CartIcon />
-              <span>سبد خرید</span>
-            </a>
-            <a href="/login">
-              <Icons.AccountIcon />
-              <span>حساب کاربری</span>
-            </a>
+          <div className="flex justify-between *:flex-1 *:flex *:justify-center *:flex-col *:items-center *:gap-1 backdrop-blur-2xl rounded-full px-2 py-1.5 *:px-1 *:py-1 *:text-xs border border-white/50">
+            {mobileNavItems.map(({ href, label, icon: Icon }) => {
+              const active = href === "/profile" ? pathname.startsWith("/profile") : pathname === href;
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`${active ? "text-(--primary-color) bg-gray-200/70" : "text-neutral-700"} px-2 py-2 rounded-full`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span>{label}</span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </nav>
