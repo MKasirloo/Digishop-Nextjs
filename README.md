@@ -3,17 +3,17 @@
 
 ### A Modern Persian E-Commerce Experience
 
-A modern, responsive e-commerce web application built with React, featuring a Persian RTL interface, elegant UI, and a smooth shopping experience.
+A modern, responsive e-commerce web application built with **Next.js**, featuring a Persian RTL interface, elegant UI, and a smooth shopping experience.
 
 <p align="center">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js"/>
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
-  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite"/>
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=000" alt="JavaScript"/>
   <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS"/>
 </p>
 
 <p align="center">
-  <b>Persian • RTL • Responsive • E-Commerce</b>
+  <b>Next.js • Persian • RTL • Responsive • E-Commerce</b>
 </p>
 
 ---
@@ -22,7 +22,7 @@ A modern, responsive e-commerce web application built with React, featuring a Pe
 
 **DigiShop** is a Persian e-commerce frontend project designed to deliver a clean, intuitive, and responsive online shopping experience.
 
-Built with React and modern frontend tools, the project focuses on reusable UI components, responsive layouts, product discovery, and a user-friendly shopping interface.
+Built with Next.js and modern frontend technologies, the project focuses on reusable UI components, efficient routing, responsive layouts, product discovery, and a user-friendly shopping interface.
 
 ## 🚀 Features
 
@@ -30,26 +30,25 @@ Built with React and modern frontend tools, the project focuses on reusable UI c
 - 📱 Responsive design for desktop and mobile
 - 🇮🇷 Persian language and RTL layout
 - 🔍 Product search and category navigation
-- 📦 Product detail pages
+- 📦 Dynamic product detail pages
 - 🔐 Login and user interface
 - 💳 Checkout and payment flow UI
 - 🎨 Custom styling and reusable components
-- ⚡ Fast development and build workflow powered by Vite
+- ⚡ Optimized rendering and navigation with Next.js
+- 🖼️ Image optimization using Next.js Image
 
 ## 🛠️ Tech Stack
 
 | Technology | Purpose |
 | --- | --- |
-| React | UI development |
-| Vite | Development server and build tool |
+| Next.js | React framework and application routing |
+| React | Component-based UI development |
 | JavaScript (ES6+) | Application logic |
-| Tailwind CSS / CSS | Styling and responsive layouts |
+| Tailwind CSS / CSS Modules | Styling and responsive layouts |
 | Swiper | Interactive sliders and carousels |
-| React Router | Client-side navigation |
+| Next.js App Router | File-system-based routing |
 
 ## 📸 Screenshots
-
-<!-- Add screenshots of your application here -->
 
 | Home Page | Product Listing |
 | --- | --- |
@@ -63,11 +62,11 @@ Built with React and modern frontend tools, the project focuses on reusable UI c
 | --- | --- |
 | ![](screenshots/login.png) | ![](screenshots/verification.png) |
 
-| Profile dashboard | Orders list |
+| Profile Dashboard | Orders List |
 | --- | --- |
 | ![](screenshots/profile-dashboard.png) | ![](screenshots/profile-orders.png) |
 
-| Notifications | Uset information |
+| Notifications | User Information |
 | --- | --- |
 | ![](screenshots/profile-notifications.png) | ![](screenshots/profile-info.png) |
 
@@ -86,13 +85,13 @@ Make sure you have [Node.js](https://nodejs.org/) and npm installed.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/MKasirloo/DigiShop.git
+   git clone https://github.com/MKasirloo/DigiShop-Next.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd DigiShop
+   cd DigiShop-Next
    ```
 
 3. Install dependencies:
@@ -107,33 +106,37 @@ Make sure you have [Node.js](https://nodejs.org/) and npm installed.
    npm run dev
    ```
 
-5. Open the local URL displayed in your terminal.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Production Build
+
+Build the application:
 
 ```bash
 npm run build
 ```
 
-To preview the production build locally:
+Start the production server:
 
 ```bash
-npm run preview
+npm run start
 ```
 
 ## 📁 Project Structure
 
 ```text
-DigiShop/
+DigiShop-Next/
+├── app/
+│   ├── api/
+│   ├── products/
+│   │   └── [id]/
+│   ├── layout.js
+│   └── page.js
+├── components/
 ├── public/
-│   └── images/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── pages/
-│   ├── App.jsx
-│   └── main.jsx
-├── index.html
+│   ├── images/
+│   └── screenshots/
+├── data/
 ├── package.json
 └── README.md
 ```
@@ -142,12 +145,12 @@ DigiShop/
 
 ## 🎯 Project Goals
 
-- Build a practical e-commerce interface using React
+- Build a practical e-commerce application using Next.js
 - Improve component-based development skills
-- Create a responsive and accessible user experience
-- Practice frontend architecture and state management
-- Explore modern web development workflows
-
+- Explore Next.js App Router and file-system-based routing
+- Create responsive and accessible user interfaces
+- Practice modern frontend architecture and state management
+- Explore server-side rendering and modern web development workflows
 
 ## 👨‍💻 Author
 
@@ -158,5 +161,5 @@ GitHub: [@MKasirloo](https://github.com/MKasirloo)
 ---
 
 <p align="center">
-  Made with ❤️ and React
+  Made with ❤️ and Next.js
 </p>
