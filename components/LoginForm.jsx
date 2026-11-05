@@ -1,0 +1,73 @@
+import { useState } from "react";
+import styles from "./LoginForm.module.css";
+import { ChevronRightIcon } from "../assets/icons";
+
+export default function LoginForm() {
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [isOK, setIsOK] = useState(false);
+
+  function onPhoneNumberChange(e) {
+    setPhoneNumber(e.target.value);
+    if(e.target.value[0] === '0' && e.target.value[1] === '9' && e.target.value.length === 11) {
+      setIsOK(true);
+    }
+    else {
+      setIsOK(false);
+    }
+  }
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.box}>
+        <div className={styles.logo}>
+          <img src="/images/logo.png" alt="Logo" />
+          <a href="/" className={styles.backIcon}>
+            <ChevronRightIcon className="stroke-gray-500!" />
+          </a>
+        </div>
+
+        <div className={styles.wrapper}>
+          <div className={styles.text}>
+            <p className={styles.title}>
+              ورود یا ثبت نام در {' '}
+              <span className={styles.textLogo}>دیجی شاپ</span>
+            </p>
+
+            <p className={styles.desc}>
+              برای ورود به دیجی شاپ شماره موبایل خود را وارد کنید:
+            </p>
+          </div>
+
+          <form className={styles.loginForm}>
+            <div className={styles.inputWrapper}>
+              <input
+                id="phoneNumber"
+                className={styles.mobileNumber}
+                value={phoneNumber}
+                onChange={onPhoneNumberChange}
+                maxLength={11}
+                minLength={11}
+              />
+              <label htmlFor="phoneNumber" className={`${styles.mobileNumberLabel} ${phoneNumber !== '' ? styles.active : ''}`}>شماره موبایل...</label>
+            </div>
+          </form>
+          <a href="/verification" className="block w-full">
+            <button className={`${styles.loginButton} w-full`} disabled={!isOK}>
+              ورود به دیجی شاپ
+            </button>
+          </a>
+
+          <div className={styles.policyWrapper}>
+            <div className={styles.policy}>
+              ورود شما به معنای پذیرش شرایط {' '}
+              <a href="/">دیجی شاپ</a>
+              {' '} و {' '}
+              <a href="#">قوانین حریم خصوصی</a>
+              {' '}است.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
