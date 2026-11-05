@@ -77,7 +77,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
 
   return (
     <>
-      (showToast && <Toast message="کالا با موفقیت به سبد خرید اضافه شد!" type="success" />);
+      <Toast message="کالا با موفقیت به سبد خرید اضافه شد!" type="success" />
       <div>
         <ul className="flex gap-2 my-2.5 mx-5 text-(--text-gray)">
           <li>
@@ -89,7 +89,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
           </li>
           <span>{">"}</span>
           <li className="text-(--text-primary)!">
-            <Link href="/">{product.category}</Link>
+            <Link href="/">موبایل</Link>
           </li>
         </ul>
       </div>
@@ -131,10 +131,12 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
               </div>
             </div>
           )}
-          <div className="relative border border-gray-300 rounded-b-lg p-5 max-lg:border-none flex justify-center">
-            <span className="absolute left-5 top-5 bg-(--offer-color) text-white p-2 text-lg rounded-full max-lg:text-xl">
-              {product.discount_percent + "%"}
-            </span>
+          <div className={`relative border border-gray-300 p-5 max-lg:border-none flex justify-center ${product.discount_percent > 0 ? "rounded-b-lg" : "rounded-lg"}`}>
+            {product.discount_percent > 0 && (
+              <span className="absolute left-5 top-5 bg-(--offer-color) text-white p-2 text-lg rounded-full max-lg:text-xl">
+                {product.discount_percent + "%"}
+              </span>
+            )}
             <Image src={currentPhoto} alt={product.name} width={400} height={400} className="object-cover p-2" />
           </div>
           <Swiper

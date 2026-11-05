@@ -84,7 +84,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
                   {categories.map((category) => {
                     return (
                       <li key={category.id} onClick={() => setIsCategoriesMenuOpen(false)}>
-                        <Link href={`products?category=${category.name}`} target="_blank" key={category.id} className="flex items-center gap-3 rounded-lg px-3 py-4 text-sm transition hover:bg-violet-50 hover:*:text-(--primary-color)!">
+                        <Link href={`/products?category=${category.name}`} target="_blank" key={category.id} className="flex items-center gap-3 rounded-lg px-3 py-4 text-sm transition hover:bg-violet-50 hover:*:text-(--primary-color)!">
                           <span className="shrink-0 rounded-lg bg-violet-100 p-2">
                             <category.icon />
                           </span>
@@ -199,7 +199,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
                     {categories.map((category) => {
                       return (
                         <li key={category.id}>
-                          <Link href={`products?category=${category.name}`} className="flex items-center gap-3 rounded-lg px-3 py-4 text-sm transition hover:bg-violet-50 hover:*:text-(--primary-color)!">
+                          <Link href={`/products?category=${category.name}`} className="flex items-center gap-3 rounded-lg px-3 py-4 text-sm transition hover:bg-violet-50 hover:*:text-(--primary-color)!">
                             <span className="shrink-0 rounded-lg bg-violet-100 p-2">
                               <category.icon />
                             </span>
