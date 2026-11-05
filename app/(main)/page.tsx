@@ -6,14 +6,13 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./Home.css";
 
-import brands from "./data/brands";
 import MainSlider from "@/components/MainSlider";
 import Stories from "@/components/Stories";
 import Image from "next/image";
 import Link from "next/link";
 import OfferProductSlider from "@/components/OfferProductSlider";
 import BrandsSlider from "@/components/BrandsSlider";
-import categories from "./data/categories";
+import categories from "@/app/data/categories";
 import CategoryCard from "@/components/CategoryCard";
 
 export default function Page() {
