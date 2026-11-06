@@ -15,7 +15,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
     { href: "/", label: "خانه", icon: Icons.HomeIcon },
     { href: "/categories", label: "دسته بندی ها", icon: Icons.CategoriesIcon },
     { href: "/cart", label: "سبد خرید", icon: Icons.CartIcon },
-    { href: "/profile", label: "حساب کاربری", icon: Icons.AccountIcon }
+    { href: "/profile/dashboard", label: "حساب کاربری", icon: Icons.AccountIcon }
   ];
   const pathname = usePathname();
 
@@ -246,7 +246,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
         <div className="md:hidden py-5 px-3 fixed bottom-0 w-full z-10">
           <div className="flex justify-between *:flex-1 *:flex *:justify-center *:flex-col *:items-center *:gap-1 backdrop-blur-2xl rounded-full px-2 py-1.5 *:px-1 *:py-1 *:text-xs border border-white/50">
             {mobileNavItems.map(({ href, label, icon: Icon }) => {
-              const active = href === "/profile" ? pathname.startsWith("/profile") : pathname === href;
+              const active = href === "/profile/dashboard" ? pathname.startsWith("/profile") : pathname === href;
               return (
                 <Link
                   key={href}

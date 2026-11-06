@@ -2,9 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { TomanThinIcon } from "@/app/assets/icons";
 
-export default function SliderProductCard({ product }: { product: any }) {
+export default function SliderProductCard({ product }) {
   return(
-    <Link href="/single-product" className="offer-card">
+    <Link href={`/products/${product.id}`} className="offer-card">
       <div className="offer-card__info">
         <div className="offer-card__img-container">
             <Image width={500} height={500} className="w-full" src={product.image_src} alt={product.name} />

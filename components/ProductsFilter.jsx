@@ -57,7 +57,6 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
   }
   return(
     <>
-      
       <ul className="filters">
         <li className="filter">
           <div className="inStockOnly">
@@ -100,7 +99,6 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
             </div>
           </div>
         </li>
-        {/* <li className="filter"></li> */}
       </ul>
     </>
   );

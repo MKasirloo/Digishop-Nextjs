@@ -69,7 +69,7 @@ export default function Cart() {
                       {p.discount_percent > 0 && (
                         <div className="flex flex-row-reverse gap-2 items-center">
                           <div className="text-(--text-secondary) text-sm line-through">
-                            {p.price.toLocaleString()}
+                            {p.price.toLocaleString("fa-IR")}
                           </div>
                           <div className="flex items-center justify-center rounded bg-(--offer-color) text-white text-sm px-1">
                             {p.discount_percent + '%'}
@@ -77,7 +77,7 @@ export default function Cart() {
                         </div>
                       )}
                       <div className="flex gap-2 items-center font-bold text-(--text-natural) md:text-2xl text-lg">
-                        {(p.price * (1 - p.discount_percent / 100)).toLocaleString()}
+                        {(p.price * (1 - p.discount_percent / 100)).toLocaleString("fa-IR")}
                         <Icons.TomanIcon />
                       </div>
                       <div className="flex flex-row-reverse rounded-lg border border-gray-300 *:p-1 divide-x divide-gray-300 mt-auto text-(--text-secondary)">

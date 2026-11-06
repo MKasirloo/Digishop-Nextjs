@@ -8,8 +8,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import products from "@/app/data/products";
-import Image from "next/image";
-import Link from "next/link";
 import SliderProductCard from "./SliderProductCard";
 
 export default function OfferProductSlider() {

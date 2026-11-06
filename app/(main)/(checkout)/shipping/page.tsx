@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from "@/components/Container";
 import {
-  ChevronDownIcon,
   ClockIcon,
   ShippingIcon,
   TomanThinIcon,
@@ -22,27 +21,33 @@ import addresses from "@/app/data/addresses";
 import cartProducts from "@/app/data/cart";
 
 export default function Shipping() {
-  const formatter = new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-  });
+  const [shippingDays, setShippingDays] = useState([]);
 
-  const shippingDays = [];
-
-  for (let i = 1; i <= 10; i++) {
-    const date = new Date();
-    date.setDate(date.getDate() + i);
-
-    const parts = formatter.formatToParts(date);
-
-    shippingDays.push({
-      id: i,
-      weekday: parts.find((p) => p.type === "weekday").value,
-      day: parts.find((p) => p.type === "day").value,
-      month: parts.find((p) => p.type === "month").value,
+  useEffect(() => {
+    const formatter = new Intl.DateTimeFormat("fa-IR-u-ca-persian", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
     });
-  }
+
+    const days = [];
+
+    for (let i = 1; i <= 10; i++) {
+      const date = new Date();
+      date.setDate(date.getDate() + i);
+
+      const parts = formatter.formatToParts(date);
+
+      days.push({
+        id: i,
+        weekday: parts.find((p) => p.type === "weekday").value,
+        day: parts.find((p) => p.type === "day").value,
+        month: parts.find((p) => p.type === "month").value,
+      });
+    }
+
+    setShippingDays(days);
+  }, []);
 
   const [addressIndex, setAddressIndex] = useState(0);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
