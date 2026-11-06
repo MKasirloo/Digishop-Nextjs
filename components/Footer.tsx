@@ -1,5 +1,3 @@
-"use client";
-
 import { HeartIcon, ChevronUpIcon } from "../app/assets/icons";
 
 export default function Footer() {
@@ -13,7 +11,7 @@ export default function Footer() {
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <div className="flex gap-5 border-b border-white/10 py-8 justify-between sm:items-center sm:justify-between">
             <a href="/" className="group w-fit">
-              <span className="text-4xl transition group-hover:text-violet-100 font-bold">
+              <span className="text-4xl transition group-hover:text-violet-100 font-lalezar">
                 دیجی&zwnj;شاپ
               </span>
               <p className="mt-2 text-xs text-white/50">

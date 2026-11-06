@@ -10,6 +10,7 @@ import MainSlider from "@/components/MainSlider";
 // import Stories from "@/components/Stories";
 import Image from "next/image";
 import Link from "next/link";
+import Stories from "@/components/Stories";
 import OfferProductSlider from "@/components/OfferProductSlider";
 import BrandsSlider from "@/components/BrandsSlider";
 import categories from "@/app/data/categories";
@@ -20,7 +21,7 @@ export default function Page() {
     <>
       <MainSlider />
       <Container>
-        {/* <Stories /> */}
+        <Stories />
         <div className="my-10 text-xl relative p-2
           before:content-['']
           before:absolute

@@ -7,7 +7,7 @@ export default function SliderProductCard({ product }) {
     <Link href={`/products/${product.id}`} className="offer-card">
       <div className="offer-card__info">
         <div className="offer-card__img-container">
-            <Image width={500} height={500} className="w-full" src={product.image_src} alt={product.name} />
+            <Image width={500} height={500} className="w-full" src={product.image} alt={product.name} />
         </div>
         <div className="offer-card__product-name">
             <p>{product.name}</p>
