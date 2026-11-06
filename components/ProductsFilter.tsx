@@ -45,7 +45,7 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
     filterProducts(price, inStockOnly, !offerOnly);
   }
 
-  function filterProducts(price, inStockOnly, offerOnly) {
+  function filterProducts(price, inStockOnly?: boolean, offerOnly?: boolean) {
     setFilteredProducts(products.filter(
       p => ((
         p.price * (1 - p.discount_percent / 100)) >= price.min

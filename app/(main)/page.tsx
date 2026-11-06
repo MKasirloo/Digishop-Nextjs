@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import "./Home.css";
 
 import MainSlider from "@/components/MainSlider";
-import Stories from "@/components/Stories";
+// import Stories from "@/components/Stories";
 import Image from "next/image";
 import Link from "next/link";
 import OfferProductSlider from "@/components/OfferProductSlider";
@@ -20,7 +20,7 @@ export default function Page() {
     <>
       <MainSlider />
       <Container>
-        <Stories />
+        {/* <Stories /> */}
         <div className="my-10 text-xl relative p-2
           before:content-['']
           before:absolute
