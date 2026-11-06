@@ -3,7 +3,7 @@ const products = [
   {
     id: 1,
     name: "گوشی موبایل آیفون مدل iPhone 12 Pro Max",
-    english_name: "Apple iPhone 12 Pro Max",
+    name_en: "Apple iPhone 12 Pro Max",
     category: "mobile",
     price: 80000000,
     discount_percent: 10,
@@ -11,10 +11,10 @@ const products = [
     stock: 3,
     sold: 2847,
     rating: 4.7,
-    comments: 384,
-    questions: 47,
+    comments_count: 384,
+    questions_count: 47,
     brand: "Apple",
-    image_src: "/images/products/iPhone-12-pro-max-black.png",
+    image: "/images/products/iPhone-12-pro-max-black.png",
     images: [
       "/images/products/iPhone-12-pro-max-black.png"
     ],
@@ -40,7 +40,7 @@ const products = [
   {
     id: 2,
     name: "کنسول بازی سونی مدل PS5 Slim Digital Edition",
-    english_name: "Sony PlayStation 5 Slim Digital Edition",
+    name_en: "Sony PlayStation 5 Slim Digital Edition",
     category: "gaming-console",
     price: 120000000,
     discount_percent: 4,
@@ -48,10 +48,10 @@ const products = [
     stock: 0,
     sold: 1923,
     rating: 4.5,
-    comments: 217,
-    questions: 31,
+    comments_count: 217,
+    questions_count: 31,
     brand: "Sony",
-    image_src: "/images/products/ps5-slim-digital.jpg",
+    image: "/images/products/ps5-slim-digital.jpg",
     images: [
       "/images/products/ps5-slim-digital.jpg"
     ],
@@ -74,7 +74,7 @@ const products = [
   {
     id: 3,
     name: "تبلت اپل مدل iPad 12 Pro",
-    english_name: "Apple iPad 12 Pro",
+    name_en: "Apple iPad 12 Pro",
     category: "tablet",
     price: 100000000,
     discount_percent: 8,
@@ -82,10 +82,10 @@ const products = [
     stock: 2,
     sold: 1356,
     rating: 4.8,
-    comments: 163,
-    questions: 28,
+    comments_count: 163,
+    questions_count: 28,
     brand: "Apple",
-    image_src: "/images/products/iPad-12-pro-black.jpg",
+    image: "/images/products/iPad-12-pro-black.jpg",
     images: [
       "/images/products/iPad-12-pro-black.jpg"
     ],
@@ -109,7 +109,7 @@ const products = [
   {
     id: 4,
     name: "گوشی موبایل اپل مدل iPhone X",
-    english_name: "Apple iPhone X",
+    name_en: "Apple iPhone X",
     category: "mobile",
     price: 50000000,
     discount_percent: 20,
@@ -117,10 +117,10 @@ const products = [
     stock: 4,
     sold: 4218,
     rating: 4.3,
-    comments: 526,
-    questions: 64,
+    comments_count: 526,
+    questions_count: 64,
     brand: "Apple",
-    image_src: "/images/products/iPhone-X-black.jpg",
+    image: "/images/products/iPhone-X-black.jpg",
     images: [
       "/images/products/iPhone-X-black.jpg"
     ],
@@ -142,7 +142,7 @@ const products = [
   {
     id: 5,
     name: "لپ تاپ اپل مدل MacBook Air",
-    english_name: "Apple MacBook Air",
+    name_en: "Apple MacBook Air",
     category: "laptop",
     price: 100000000,
     discount_percent: 3,
@@ -150,10 +150,10 @@ const products = [
     stock: 0,
     sold: 987,
     rating: 4.6,
-    comments: 142,
-    questions: 19,
+    comments_count: 142,
+    questions_count: 19,
     brand: "Apple",
-    image_src: "/images/products/macBook-Air.png",
+    image: "/images/products/macBook-Air.png",
     images: [
       "/images/products/macBook-Air.png"
     ],
@@ -175,7 +175,7 @@ const products = [
   {
     id: 6,
     name: "گوشی موبایل Xiaomi مدل 11T Pro",
-    english_name: "Xiaomi 11T Pro",
+    name_en: "Xiaomi 11T Pro",
     category: "mobile",
     price: 60000000,
     discount_percent: 15,
@@ -183,10 +183,10 @@ const products = [
     stock: 5,
     sold: 3164,
     rating: 4.4,
-    comments: 341,
-    questions: 52,
+    comments_count: 341,
+    questions_count: 52,
     brand: "Xiaomi",
-    image_src: "/images/products/xiaomi-11T-pro.jpg",
+    image: "/images/products/xiaomi-11T-pro.jpg",
     images: [
       "/images/products/xiaomi-11T-pro.jpg"
     ],
@@ -210,7 +210,7 @@ const products = [
   {
     id: 7,
     name: "گوشی موبایل اپل مدل iPhone 13",
-    english_name: "Apple iPhone 13",
+    name_en: "Apple iPhone 13",
     category: "mobile",
     price: 90000000,
     discount_percent: 7,
@@ -218,10 +218,10 @@ const products = [
     stock: 0,
     sold: 2471,
     rating: 4.9,
-    comments: 298,
-    questions: 43,
+    comments_count: 298,
+    questions_count: 43,
     brand: "Apple",
-    image_src: "/images/products/iPhone-13-red.png",
+    image: "/images/products/iPhone-13-red.png",
     images: [
       "/images/products/iPhone-13-red.png"
     ],
@@ -246,7 +246,7 @@ const products = [
   {
     id: 8,
     name: "هندزفری بیسیم اپل مدل AirPods Pro",
-    english_name: "Apple AirPods Pro",
+    name_en: "Apple AirPods Pro",
     category: "earphones",
     price: 50000000,
     discount_percent: 10,
@@ -254,10 +254,10 @@ const products = [
     stock: 2,
     sold: 5382,
     rating: 4.7,
-    comments: 613,
-    questions: 76,
+    comments_count: 613,
+    questions_count: 76,
     brand: "Apple",
-    image_src: "/images/products/airpods-pro.jpg",
+    image: "/images/products/airpods-pro.jpg",
     images: [
       "/images/products/airpods-pro.jpg"
     ],
@@ -277,7 +277,7 @@ const products = [
   {
     id: 9,
     name: "گوشی موبایل اپل مدل iPhone 14 Pro Max",
-    english_name: "Apple iPhone 14 Pro Max",
+    name_en: "Apple iPhone 14 Pro Max",
     category: "mobile",
     price: 125000000,
     discount_percent: 0,
@@ -285,10 +285,10 @@ const products = [
     stock: 3,
     sold: 3276,
     rating: 4.8,
-    comments: 472,
-    questions: 58,
+    comments_count: 472,
+    questions_count: 58,
     brand: "Apple",
-    image_src: "/images/products/14-pro-max.png",
+    image: "/images/products/14-pro-max.png",
     images: [
       "/images/products/14-pro-max.png"
     ],

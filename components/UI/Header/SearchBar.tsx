@@ -31,7 +31,7 @@ export default function SearchBar() {
               {res.map(p => (
                 <Link href={`/products/${p.id}`} target="_blank" key={p.id} className="group relative flex w-full my-2 items-center hover:bg-violet-100/80 transition-colors hover:cursor-pointer rounded-md py-1 px-2">
                   <div className="ml-1">
-                    <Image src={p.image_src} alt={p.english_name} width={50} height={50} className="w-12.5 h-12.5 object-contain" />
+                    <Image src={p.image} alt={p.name_en} width={50} height={50} className="w-12.5 h-12.5 object-contain" />
                   </div>
                   <div className="flex flex-col justify-between">
                     <div className="text-(--text-primary)">{p.name}</div>
