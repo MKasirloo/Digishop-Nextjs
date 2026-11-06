@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import "../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,7 +65,9 @@ export default function CheckoutLayout({ children }: LayoutProps<"/">) {
       className={`${shabnam.variable} ${geistSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Header />
+        <Suspense fallback={null}>
+          <Header />
+        </Suspense>
         {children}
         <Footer />
       </body>
