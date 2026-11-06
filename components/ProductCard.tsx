@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import * as Icons from "@/app/assets/icons";
 import "./ProductCard.css";

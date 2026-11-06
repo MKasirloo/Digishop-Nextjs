@@ -1,3 +1,5 @@
+"use client";
+
 import { HeartIcon, ChevronUpIcon } from "../app/assets/icons";
 
 export default function Footer() {
