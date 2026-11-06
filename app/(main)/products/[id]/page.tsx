@@ -164,7 +164,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
           </div>
           <div className="flex justify-between my-2.5">
             <div className="text-(--text-gray)">
-              <h4 className="font-light">{product.english_name}</h4>
+              <h4 className="font-light">{product.name_en}</h4>
             </div>
             <div className="flex flex-row-reverse gap-2.5 [&_svg]:text-(--text-secondary)">
               <div
@@ -186,9 +186,9 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
               <span className="flex items-center text-base">{product.rating}</span>
             </div>
             <div className="flex items-center gap-2 [&>a]:text-(--primary-color)">
-              <Link href="#comment">{product.comments + " دیدگاه"}</Link>
+              <Link href="#comment">{product.comments_count + " دیدگاه"}</Link>
               <span className="text-gray-500 -translate-y-[5px] text-2xl">.</span>
-              <Link href="#questions">{product.questions + " پرسش"}</Link>
+              <Link href="#questions">{product.questions_count + " پرسش"}</Link>
             </div>
           </div>
           <div className="flex items-center gap-2">

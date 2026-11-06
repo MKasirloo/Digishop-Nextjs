@@ -66,6 +66,10 @@ input:-webkit-autofill:active {
   @apply bg-white text-(--primary-color) border-2 border-(--primary-color) rounded-lg disabled:cursor-not-allowed disabled:opacity-50 transition-colors hover:bg-(--melow-hover) hover:cursor-pointer;
 }
 
+.center {
+  @apply flex justify-center items-center
+}
+
 @keyframes toastEnter {
   from {
     transform: translateX(-120%);

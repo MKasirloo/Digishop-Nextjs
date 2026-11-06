@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from 'next/font/local'
 import "./globals.css";
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +63,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${shabnam.variable} ${geistSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <NextTopLoader
+          color="#4D00FF"
+          height={3}
+          showSpinner={false}
+          crawlSpeed={200}
+          speed={300}
+          shadow="0 0 10px #4D00FF, 0 0 20px #4D00FF, 0 0 30px #4D00FF"
+        />
         {children}
       </body>
     </html>
