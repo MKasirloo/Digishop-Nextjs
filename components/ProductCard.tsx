@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image"
 import * as Icons from "@/app/assets/icons";
-import "./ProductCard.css";
 
 export default function ProductCard({ product }) {
   return (
