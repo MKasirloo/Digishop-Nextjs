@@ -19,7 +19,7 @@ export default function SidePanel() {
   return(
     <>
       {isSidebarOpen && (
-        <div className="fixed inset-0 bg-black/30 z-2" onClick={() => setIsSidebarOpen(false)}></div>
+        <div className="fixed inset-0 bg-black/30 z-2 md:hidden" onClick={() => setIsSidebarOpen(false)}></div>
       )}
       <header className="bg-(--bg-secondary) flex justify-between py-4 md:hidden">
         {items.map(i => (
@@ -37,18 +37,15 @@ export default function SidePanel() {
       <aside className={`${isMinimized ? "w-14" : "w-50"} transition-all bg-(--bg-secondary) z-3 flex flex-col justify-between max-md:fixed max-md:top-0 max-md:bottom-0 max-md:right-0 max-md:py-2 max-md:transition-transform ${isSidebarOpen ? "translate-x-0" : "translate-x-full"}`}>
         <div>
           <div className="flex justify-between items-center px-2">
-              <div className={`font-lalezar text-xl ${isMinimized && "hidden"}`}>
-                دیجی&zwnj;شاپ
-              </div>
-            {isSidebarOpen ? (
-              <button className="p-1 rounded-md bg-white" onClick={() => setIsSidebarOpen(false)}>
-                <X />
-              </button>
-              ) : (
-              <div className="p-2 hover:bg-white hover:cursor-pointer transition-colors rounded-md" onClick={() => setIsMinimized(!isMinimized)}>
-                <SquareChevronsRight className={`${isMinimized && "rotate-180"} w-6 h-6 transition-transform`} />
-              </div>
-            )}
+            <div className={`font-lalezar text-xl ${isMinimized && "hidden"}`}>
+              دیجی&zwnj;شاپ
+            </div>
+            <button className="p-1 rounded-md bg-white md:hidden" onClick={() => setIsSidebarOpen(false)}>
+              <X />
+            </button>
+            <div className="max-md:hidden p-2 hover:bg-white hover:cursor-pointer transition-colors rounded-md" onClick={() => setIsMinimized(!isMinimized)}>
+              <SquareChevronsRight className={`${isMinimized && "rotate-180"} w-6 h-6 transition-transform`} />
+            </div>
           </div>
           <div className="my-2">
             <ul>
