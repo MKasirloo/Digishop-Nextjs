@@ -120,7 +120,7 @@ export default function Footer() {
         </div>
       </footer>
 
-      <div className="border-t border-white/5 bg-[#17004e] text-white max-md:mb-[70px]">
+      <div className="border-t border-white/5 bg-[#17004e] text-white max-md:h-50">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-5 py-5 text-center sm:flex-row sm:px-8 sm:text-right">
           <p className="flex flex-wrap items-center justify-center gap-1.5 text-xs text-white/50 sm:justify-start sm:text-sm">
             <span>ساخته شده با</span>
@@ -141,8 +141,6 @@ export default function Footer() {
           </p>
         </div>
       </div>
-
-      <div className="mobile-menu-fixer" />
     </>
   );
 }

@@ -77,7 +77,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
 
   return (
     <>
-      <Toast message="کالا با موفقیت به سبد خرید اضافه شد!" type="success" />
+      {/* <Toast message="کالا با موفقیت به سبد خرید اضافه شد!" type="success" /> */}
       <div>
         <ul className="flex gap-2 my-2.5 mx-5 text-(--text-gray)">
           <li>
@@ -85,11 +85,11 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
           </li>
           <span>{">"}</span>
           <li>
-            <Link href="/">محصولات</Link>
+            <Link href="/products">محصولات</Link>
           </li>
           <span>{">"}</span>
           <li className="text-(--text-primary)!">
-            <Link href="/">موبایل</Link>
+            <Link href="/products?category=mobile">موبایل</Link>
           </li>
         </ul>
       </div>
@@ -160,7 +160,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
         </div>
         <div className="flex-1">
           <div>
-            <h2>{product.name}</h2>
+            <h2 className="font-medium">{product.name}</h2>
           </div>
           <div className="flex justify-between my-2.5">
             <div className="text-(--text-gray)">

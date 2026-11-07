@@ -13,6 +13,8 @@
   --text-gray: #5c5c5c;
   --primary-hover: #3D00CC;
   --melow-hover: #f4efff;
+  --bg-primary: #FEFEFC;
+  --bg-secondary: #EFEFED;
 }
 
 @theme {
@@ -38,7 +40,7 @@
 }
 
 body {
-  background: var(--background);
+  background: var(--bg-primary);
   color: var(--foreground);
   font-family: var(--font-shabnam) sans-serif;
 }

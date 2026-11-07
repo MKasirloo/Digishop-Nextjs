@@ -53,7 +53,7 @@ export default function Toast({ message, type }: { message?: string; type: strin
             : "animate-[toastExit_0.1s_ease-in_forwards]"
         }`}
       >
-        <div className="rounded-lg relative px-3 flex gap-2 items-center shadow-md py-2 h-20 bg-white z-[999999]">
+        <div className="rounded-lg relative px-3 flex gap-2 items-center shadow-md py-2 h-20 bg-white z-999999">
           <div className={`absolute left-0 top-0 bottom-0 w-2 rounded-l-lg ${style[type]}`} />
 
           <Button

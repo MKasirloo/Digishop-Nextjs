@@ -199,7 +199,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
                     {categories.map((category) => {
                       return (
                         <li key={category.id}>
-                          <Link href={`/products?category=${category.name}`} className="flex items-center gap-3 rounded-lg px-3 py-4 text-sm transition hover:bg-violet-50 hover:*:text-(--primary-color)!">
+                          <Link href={`/products?category=${category.name}`} className="flex items-center gap-3 rounded-lg px-3 py-4 text-sm" onClick={() => {setIsCategoriesMenuOpen(false); setIsMobileMenuOpen(false);}}>
                             <span className="shrink-0 rounded-lg bg-violet-100 p-2">
                               <category.icon />
                             </span>
@@ -244,7 +244,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
         )}
 
         <div className="md:hidden py-5 px-3 fixed bottom-0 w-full z-10">
-          <div className="flex justify-between *:flex-1 *:flex *:justify-center *:flex-col *:items-center *:gap-1 backdrop-blur-2xl rounded-full px-2 py-1.5 *:px-1 *:py-1 *:text-xs border border-white/50">
+          <div className="flex justify-between *:flex-1 *:flex *:justify-center *:flex-col bg-white/40 *:items-center *:gap-1 backdrop-blur-2xl rounded-full px-2 py-1.5 *:px-1 *:py-1 *:text-xs border border-white/50">
             {mobileNavItems.map(({ href, label, icon: Icon }) => {
               const active = href === "/profile/dashboard" ? pathname.startsWith("/profile") : pathname === href;
               return (
