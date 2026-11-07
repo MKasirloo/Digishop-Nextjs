@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function SidePanel() {
   const [isMinimized, setIsMinimized] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const items = [
     { label: "داشبورد", icon: LayoutDashboard, href: "/admin/dashboard" },
     { label: "محصولات", icon: ShoppingBag, href: "/admin/products" },
