@@ -12,12 +12,12 @@ export default function SearchBar() {
   const query = searchParams.get("query");
   const [searchInput, setSearchInput] = useState(query ? query : '');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const res = searchProducts(searchInput);
+  const res = (searchInput !== '' ? searchProducts(searchInput) : []);
   const inputRef = useRef(null);
   const router = useRouter();
 
   function handleSearch() {
-    if(!searchInput)
+    if(searchInput === '')
       return;
     router.replace(`/products?query=${encodeURIComponent(searchInput)}`);
     setIsSearchOpen(false);
