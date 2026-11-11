@@ -1,5 +1,5 @@
 
-const products = [
+const initialProducts = [
   {
     id: 1,
     name: "گوشی موبایل آیفون مدل iPhone 12 Pro Max",
@@ -369,4 +369,4 @@ const products = [
   }
 ];
 
-export default products;
+export default initialProducts;

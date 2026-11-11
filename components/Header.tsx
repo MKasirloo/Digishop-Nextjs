@@ -7,6 +7,7 @@ import SearchBar from "./UI/Header/SearchBar";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { ShoppingCart } from "lucide-react";
 
 export default function Header({ cartCount = 0 }: { cartCount?: number }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -42,7 +43,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
             <div className="flex items-center gap-2.5 whitespace-nowrap max-md:hidden!">
               <Link href="/cart">
                 <button className="relative content-center border border-gray-300 rounded-lg py-2 px-4 text-sm hover:shadow-md transition-shadow">
-                  <Icons.CartIcon className="w-7 h-7" />
+                  <ShoppingCart className="w-7 h-7" />
                   {cartCount > 0 && (<span className="absolute bottom-0 right-0 bg-(--primary-color) rounded-full w-4 h-4 text-white mr-0.5 mb-1 flex items-center justify-center text-[10px]">{cartCount}</span>)}
                 </button>
               </Link>
