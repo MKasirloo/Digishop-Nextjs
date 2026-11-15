@@ -72,11 +72,12 @@ export default function Page() {
   const page = Number(searchParams.get("page")) || 1;
   const [products, setProducts] = useState(initialProducts);
   const [search, setSearch] = useState("");
-  const lastPage = Math.ceil(products.length / 5) || 1;
+  const [view, setView] = useState(5);
+  const lastPage = Math.ceil(products.length / view) || 1;
   const currentPage = Math.min(page, Math.max(lastPage, 1));
   const currentProducts = products.slice(
-    (currentPage - 1) * 5,
-    currentPage * 5
+    (currentPage - 1) * view,
+    currentPage * view
   );
 
   function onSearchChange(e: ChangeEvent<HTMLInputElement>) {
@@ -87,6 +88,10 @@ export default function Page() {
       : searchProducts(value);
     setProducts(filteredProducts);
     router.replace(`/admin/products?page=1`);
+  }
+
+  function onViewChange(e: ChangeEvent<HTMLInputElement>) {
+    setView(Number(e.target.value));
   }
 
   function renderPagination() {
@@ -130,7 +135,7 @@ export default function Page() {
     }
   }
   return (
-    <div className="max-w-7xl space-y-6">
+    <div className="space-y-6 w-full">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h1 className="text-xl md:text-2xl font-bold">مدیریت محصولات</h1>
@@ -196,13 +201,10 @@ export default function Page() {
             </div>
 
             <div className="flex gap-2">
-              <button
-                type="button"
-                className="h-9 px-3 rounded-lg border border-gray-300 flex items-center gap-2 text-sm hover:bg-gray-50"
-              >
-                <Filter size={16} />
-                فیلتر
-              </button>
+              <div className="flex items-center gap-2">
+                <label htmlFor="view" className="text-gray-600">نمایش در هر صفحه:</label>
+                <input className="w-10 text-center h-full outline-none border border-gray-300 focus:border-(--primary-color) transition-colors rounded-lg" type="text" value={view} id="view" onChange={onViewChange} />
+              </div>
               <button
                 type="button"
                 className="w-9 h-9 rounded-lg border border-gray-300 flex items-center justify-center text-gray-500"
