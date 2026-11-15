@@ -203,7 +203,7 @@ export default function Page() {
             <div className="flex gap-2">
               <div className="flex items-center gap-2">
                 <label htmlFor="view" className="text-gray-600">نمایش در هر صفحه:</label>
-                <input className="w-10 text-center h-full outline-none border border-gray-300 focus:border-(--primary-color) transition-colors rounded-lg" type="text" value={view} id="view" onChange={onViewChange} />
+                <input inputMode="numeric" className="w-10 text-center h-full outline-none border border-gray-300 focus:border-(--primary-color) transition-colors rounded-lg" type="text" value={view} id="view" onChange={onViewChange} />
               </div>
               <button
                 type="button"
@@ -326,13 +326,13 @@ export default function Page() {
 
                   <td className="px-5 py-4">
                     <div className="flex items-center justify-center gap-2">
-                      <button
-                        type="button"
+                      <Link
+                        href={`/admin/products/${product.id}/edit`}
                         title="ویرایش محصول"
                         className="w-8 h-8 rounded-lg flex items-center justify-center text-blue-600 bg-blue-50 hover:bg-blue-100 transition-colors"
                       >
                         <Pencil size={15} />
-                      </button>
+                      </Link>
                       <button
                         type="button"
                         title="حذف محصول"
