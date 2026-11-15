@@ -12,6 +12,7 @@ import "swiper/css";
 import products from "@/app/data/products";
 import brands from "@/app/data/brands"
 import Toast from "@/components/Toast";
+import { ChevronLeft, CircleCheck, Heart, Minus, Plus, Share, Share2, ShieldCheck, Star, Trash } from "lucide-react";
 
 export default function Product({ params }: { params: Promise<{ id: string }>}) {
   const { id } = use(params);
@@ -46,28 +47,28 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
         <div className="flex my-2.5 w-full">
           <div className="flex flex-row-reverse justify-between items-center w-25 border border-gray-300 rounded-lg">
             <button
-              className="flex items-center h-full hover:cursor-pointer hover:bg-gray-100 transition-colors rounded-l-lg border-r border-gray-300"
+              className="px-1 text-gray-600 flex items-center h-full hover:cursor-pointer hover:bg-gray-100 transition-colors rounded-l-lg border-r border-gray-300"
               onClick={() => setCartCount(cartCount - 1)}
             >
               {cartCount === 1 ? (
-                <Icons.TrashCanIcon />
+                <Trash className="w-5 h-5" />
               ) : (
-                <Icons.RemoveLineIcon />
+                <Minus className="w-5 h-5" />
               )}
             </button>
-            <div className="flex items-center justify-center w-[25px] h-full text-lg">{cartCount}</div>
+            <div className="flex items-center justify-center w-5 h-full text-lg">{cartCount}</div>
             <button
-              className="flex items-center h-full hover:cursor-pointer hover:bg-gray-100 transition-colors rounded-r-lg border-l border-gray-300"
+              className="px-1 flex items-center h-full hover:cursor-pointer hover:bg-gray-100 transition-colors rounded-r-lg border-l border-gray-300 disabled:opacity-75 disabled:cursor-not-allowed!"
               onClick={() => setCartCount(cartCount + 1)}
               disabled={product.stock <= cartCount}
             >
-              <Icons.AddIcon className="text-(--text-secondary)" />
+              <Plus className="text-(--text-secondary)" />
             </button>
           </div>
           <Link href="/cart" className="btn-secondary flex flex-1 items-center justify-center w-full p-2.5 rounded-lg mr-1 *:flex *:items-center text-sm">
             <span>مشاهده سبد خرید</span>
             <span>
-              <Icons.ChevronLeftIcon />
+              <ChevronLeft />
             </span>
           </Link>
         </div>
@@ -173,16 +174,16 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
                 }`}
                 onClick={() => setIsLiked(!isLiked)}
               >
-                <Icons.HeartIcon className="fill-transparent" />
+                <Heart fill={isLiked ? "red" : ''} className="fill-transparent" />
               </div>
               <div className="flex justify-center items-center hover:*:text-blue-500! *:transition-colors hover:cursor-pointer">
-                <Icons.ShareIcon />
+                <Share2 />
               </div>
             </div>
           </div>
           <div className="flex items-center gap-2.5">
             <div className="flex items-center gap-0.5">
-              <Icons.YellowStarIcon />
+              <Star fill="#FFEA00" strokeWidth={0} />
               <span className="flex items-center text-base">{product.rating}</span>
             </div>
             <div className="flex items-center gap-2 [&>a]:text-(--primary-color)">
@@ -249,9 +250,9 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
             <div className="flex items-center gap-2.5 [&_span]:flex [&_span]:items-center">
               <span>
                 {hasInsurance ? (
-                  <Icons.CircleCheckIcon className="text-emerald-600" />
+                  <CircleCheck className="text-emerald-600" />
                 ) : (
-                  <Icons.ShieldIcon className="text-(--primary-color)" />
+                  <ShieldCheck className="text-(--primary-color)" />
                 )}
               </span>
               <span>
@@ -263,7 +264,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
             <div className="flex justify-between items-center my-5 pb-5 border-b border-gray-300">
               {hasInsurance ? (
                 <button
-                  className="rounded-md flex items-center justify-between py-1 px-1.5 [&_span]:flex [&_span]:items-center hover:cursor-pointer border border-red-700 text-red-700 transition-colors hover:bg-red-50"
+                  className="rounded-md flex items-center justify-between py-1 gap-1 px-1.5 [&_span]:flex [&_span]:items-center hover:cursor-pointer border border-red-700 text-red-700 transition-colors hover:bg-red-50"
                   onClick={() => {
                     setHasInsurance(false);
                     setTotalCost(totalCost - insuranceCost);
@@ -271,7 +272,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
                 >
                   حذف بیمه از کالا
                   <span>
-                    <Icons.TrashCanIcon />
+                    <Trash className="w-5 h-5" />
                   </span>
                 </button>
               ) : (
@@ -284,7 +285,7 @@ export default function Product({ params }: { params: Promise<{ id: string }>}) 
                 >
                   افزودن بیمه به کالا
                   <span>
-                    <Icons.AddIcon />
+                    <Plus />
                   </span>
                 </button>
               )}

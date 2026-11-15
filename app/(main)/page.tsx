@@ -7,7 +7,6 @@ import "swiper/css/pagination";
 import "./Home.css";
 
 import MainSlider from "@/components/MainSlider";
-// import Stories from "@/components/Stories";
 import Image from "next/image";
 import Link from "next/link";
 import Stories from "@/components/Stories";
@@ -37,7 +36,7 @@ export default function Page() {
         <div className="flex flex-wrap gap-10 justify-around">
           {categories.map(c => (<CategoryCard key={c.id} category={c} />))}
         </div>
-        <div className="offer">
+        <div className="offer mt-10">
           <div className="offer-title">
 						<div className="offerTitleImageContainer">
             	<Image width={500} height={500} className="w-full" src="/images/offer.png" alt="offer-icon" />
@@ -90,7 +89,6 @@ export default function Page() {
                 </span>
               </Link>
             </div>
-
             <div className="relative mx-auto flex aspect-square w-full max-w-sm items-center justify-center">
               <div className="absolute inset-8 rounded-full border border-violet-300/15" />
               <div className="absolute inset-14 rounded-full border border-violet-300/20" />

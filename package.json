@@ -19,7 +19,8 @@
     "postgres": "^4.1.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
-    "swiper": "^14.3.0"
+    "swiper": "^14.3.0",
+    "zustand": "^5.1.0"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",

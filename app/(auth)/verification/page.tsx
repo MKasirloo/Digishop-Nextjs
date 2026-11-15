@@ -1,10 +1,13 @@
 "use client";
 
+import { useAuthStore } from "@/app/stores/authStore";
+import Link from "next/link";
 import { useRef, useState } from "react";
 
 export default function Page() {
   const [code, setCode] = useState(['', '', '', '', '']);
   const inputs = useRef<(HTMLInputElement | null)[]>([]);
+  const setIsLoggedIn = useAuthStore(state => state.setIsLoggedIn);
   return(
     <>
       <div className="w-full h-dvh flex justify-center items-center">
@@ -74,11 +77,11 @@ export default function Page() {
               ))}
             </div>
             <div className="mb-6">
-              <a href="/profile/dashboard" className="w-full">
-                <button className="btn-primary w-full py-2" disabled={code.some(d => d === '')}>
+              <Link href="/profile/dashboard" className="w-full">
+                <button className="btn-primary w-full py-2" disabled={code.some(d => d === '')} onClick={() => setIsLoggedIn(true)}>
                   تأیید کد
                 </button>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

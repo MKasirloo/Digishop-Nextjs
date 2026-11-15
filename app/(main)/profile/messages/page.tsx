@@ -114,150 +114,145 @@ export default function Notifications() {
 
   return (
     <>
-      <Container>
-        <div className="flex max-sm:flex-col gap-4">
-          <ProfileSidebar active="messages" className="max-sm:w-full shrink-0" />
-          <div className="flex-1 min-w-0 rounded-xl border border-gray-200 bg-white p-4 md:p-6">
-            <div className="flex flex-wrap justify-between items-center gap-3 border-b border-gray-200 pb-5">
-              <div>
-                <div className="flex items-center gap-2">
-                  <h1 className="text-xl font-bold">
-                    پیام‌های من
-                  </h1>
-
-                  {unreadCount > 0 && (
-                    <span className="rounded-full bg-(--primary-color) px-2 py-0.5 text-xs text-white">
-                      {unreadCount} جدید
-                    </span>
-                  )}
-                </div>
-
-                <p className="mt-2 text-xs md:text-sm text-(--text-secondary)">
-                  اطلاعیه‌ها و پیام‌های حساب کاربری شما
-                </p>
-              </div>
+      <div className="flex-1 min-w-0 rounded-xl border border-gray-200 bg-white p-4 md:p-6">
+        <div className="flex flex-wrap justify-between items-center gap-3 border-b border-gray-200 pb-5">
+          <div>
+            <div className="flex items-center gap-2">
+              <h1 className="text-xl font-bold">
+                پیام‌های من
+              </h1>
 
               {unreadCount > 0 && (
-                <button
-                  onClick={markAllAsRead}
-                  className="flex items-center gap-2 text-xs md:text-sm text-(--primary-color) hover:opacity-70 transition-opacity"
-                >
-                  <Icons.CheckIcon className="w-4" />
-                  خواندن همه
-                </button>
+                <span className="rounded-full bg-(--primary-color) px-2 py-0.5 text-xs text-white">
+                  {unreadCount} جدید
+                </span>
               )}
             </div>
 
-            <div className="flex gap-2 overflow-x-auto py-5">
-              {[
-                { id: "all", label: "همه پیام‌ها" },
-                { id: "unread", label: "خوانده‌نشده" },
-                { id: "read", label: "خوانده‌شده" },
-              ].map((filter) => (
-                <button
-                  key={filter.id}
-                  onClick={() => setActiveFilter(filter.id)}
-                  className={`shrink-0 rounded-lg px-4 py-2 text-sm transition-colors ${
-                    activeFilter === filter.id
-                      ? "bg-(--primary-color) text-white"
-                      : "border border-gray-200 text-(--text-secondary) hover:bg-gray-50"
+            <p className="mt-2 text-xs md:text-sm text-(--text-secondary)">
+              اطلاعیه‌ها و پیام‌های حساب کاربری شما
+            </p>
+          </div>
+
+          {unreadCount > 0 && (
+            <button
+              onClick={markAllAsRead}
+              className="flex items-center gap-2 text-xs md:text-sm text-(--primary-color) hover:opacity-70 transition-opacity"
+            >
+              <Icons.CheckIcon className="w-4" />
+              خواندن همه
+            </button>
+          )}
+        </div>
+
+        <div className="flex gap-2 overflow-x-auto py-5">
+          {[
+            { id: "all", label: "همه پیام‌ها" },
+            { id: "unread", label: "خوانده‌نشده" },
+            { id: "read", label: "خوانده‌شده" },
+          ].map((filter) => (
+            <button
+              key={filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+              className={`shrink-0 rounded-lg px-4 py-2 text-sm transition-colors ${
+                activeFilter === filter.id
+                  ? "bg-(--primary-color) text-white"
+                  : "border border-gray-200 text-(--text-secondary) hover:bg-gray-50"
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+
+        {filteredMessages.length > 0 ? (
+          <div className="flex flex-col gap-3">
+            {filteredMessages.map((message) => {
+              const style = messageStyles[message.type];
+              const MessageIcon = style.icon;
+
+              return (
+                <div
+                  key={message.id}
+                  className={`flex gap-3 rounded-xl border p-3 md:p-4 transition-colors ${
+                    !message.read
+                      ? "border-violet-200 bg-violet-50/70"
+                      : "border-gray-200 hover:bg-gray-50"
                   }`}
                 >
-                  {filter.label}
-                </button>
-              ))}
+                  <button
+                    onClick={() => openMessage(message)}
+                    className="flex flex-1 min-w-0 gap-3 text-right"
+                  >
+                    <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${style.color}`}>
+                      <MessageIcon className="h-5 w-5" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h2
+                          className={`text-sm ${
+                            !message.read
+                              ? "font-bold text-gray-900"
+                              : "font-medium text-gray-700"
+                          }`}
+                        >
+                          {message.title}
+                        </h2>
+
+                        {!message.read && (
+                          <span className="h-2 w-2 rounded-full bg-(--primary-color)" />
+                        )}
+                      </div>
+
+                      <p className="mt-2 line-clamp-2 whitespace-pre-line text-xs leading-6 text-(--text-secondary)">
+                        {message.message}
+                      </p>
+
+                      <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-(--text-secondary)">
+                        <span>{style.label}</span>
+                        <span>{message.date}</span>
+                        <span>{message.time}</span>
+                      </div>
+                    </div>
+                  </button>
+
+                  <button
+                    onClick={() => deleteMessage(message.id)}
+                    title="حذف پیام"
+                    aria-label="حذف پیام"
+                    className="h-fit shrink-0 rounded-lg p-2 text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500"
+                  >
+                    <Icons.TrashCanIcon className="h-5 w-5" />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-16 text-center">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 text-gray-400">
+              <Icons.MailIcon className="h-8 w-8" />
             </div>
 
-            {filteredMessages.length > 0 ? (
-              <div className="flex flex-col gap-3">
-                {filteredMessages.map((message) => {
-                  const style = messageStyles[message.type];
-                  const MessageIcon = style.icon;
+            <p className="mt-4 font-bold">
+              {activeFilter === "unread"
+                ? "پیام خوانده‌نشده‌ای نداری"
+                : activeFilter === "read"
+                  ? "هنوز پیامی خوانده نشده"
+                  : "صندوق پیام‌ها خالی است"}
+            </p>
 
-                  return (
-                    <div
-                      key={message.id}
-                      className={`flex gap-3 rounded-xl border p-3 md:p-4 transition-colors ${
-                        !message.read
-                          ? "border-violet-200 bg-violet-50/70"
-                          : "border-gray-200 hover:bg-gray-50"
-                      }`}
-                    >
-                      <button
-                        onClick={() => openMessage(message)}
-                        className="flex flex-1 min-w-0 gap-3 text-right"
-                      >
-                        <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${style.color}`}>
-                          <MessageIcon className="h-5 w-5" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <h2
-                              className={`text-sm ${
-                                !message.read
-                                  ? "font-bold text-gray-900"
-                                  : "font-medium text-gray-700"
-                              }`}
-                            >
-                              {message.title}
-                            </h2>
-
-                            {!message.read && (
-                              <span className="h-2 w-2 rounded-full bg-(--primary-color)" />
-                            )}
-                          </div>
-
-                          <p className="mt-2 line-clamp-2 whitespace-pre-line text-xs leading-6 text-(--text-secondary)">
-                            {message.message}
-                          </p>
-
-                          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-(--text-secondary)">
-                            <span>{style.label}</span>
-                            <span>{message.date}</span>
-                            <span>{message.time}</span>
-                          </div>
-                        </div>
-                      </button>
-
-                      <button
-                        onClick={() => deleteMessage(message.id)}
-                        title="حذف پیام"
-                        aria-label="حذف پیام"
-                        className="h-fit shrink-0 rounded-lg p-2 text-gray-400 transition-colors hover:bg-red-50 hover:text-red-500"
-                      >
-                        <Icons.TrashCanIcon className="h-5 w-5" />
-                      </button>
-                    </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center py-16 text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 text-gray-400">
-                  <Icons.MailIcon className="h-8 w-8" />
-                </div>
-
-                <p className="mt-4 font-bold">
-                  {activeFilter === "unread"
-                    ? "پیام خوانده‌نشده‌ای نداری"
-                    : activeFilter === "read"
-                      ? "هنوز پیامی خوانده نشده"
-                      : "صندوق پیام‌ها خالی است"}
-                </p>
-
-                <p className="mt-2 text-sm text-(--text-secondary)">
-                  پیام‌های جدیدت اینجا نمایش داده می‌شن.
-                </p>
-              </div>
-            )}
-            {messages.length > 0 && (
-              <div className="mt-5 border-t border-gray-200 pt-4 text-xs text-(--text-secondary)">
-                نمایش {filteredMessages.length} از {messages.length} پیام
-              </div>
-            )}
+            <p className="mt-2 text-sm text-(--text-secondary)">
+              پیام‌های جدیدت اینجا نمایش داده می‌شن.
+            </p>
           </div>
-        </div>
-      </Container>
+        )}
+        {messages.length > 0 && (
+          <div className="mt-5 border-t border-gray-200 pt-4 text-xs text-(--text-secondary)">
+            نمایش {filteredMessages.length} از {messages.length} پیام
+          </div>
+        )}
+      </div>
 
       {selectedMessage && (
         <div

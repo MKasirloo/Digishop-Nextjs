@@ -126,103 +126,94 @@ export default function Addresses() {
     setForm((prev) => ({ ...prev, [key]: value }));
   };
 
-  return (
-    <Container>
-      <div className="flex max-md:flex-col gap-4">
-        <ProfileSidebar
-          active="addresses"
-          className="max-sm:grow shrink-0 max-md:w-full md:sticky md:self-start md:top-20"
-        />
+  return(
+    <>
+      <section className="border border-gray-300 rounded-lg p-4">
+        <div className="flex justify-between items-center gap-3 mb-5">
+          <h3 className="relative w-fit pb-1 before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-1/2 before:h-0.5 before:bg-(--primary-color)">
+            آدرس‌های من
+          </h3>
 
-        <div className="flex-1 min-w-0 flex flex-col gap-4">
-          <section className="border border-gray-300 rounded-lg p-4">
-            <div className="flex justify-between items-center gap-3 mb-5">
-              <h3 className="relative w-fit pb-1 before:content-[''] before:absolute before:bottom-0 before:right-0 before:w-1/2 before:h-0.5 before:bg-(--primary-color)">
-                آدرس‌های من
-              </h3>
+          <button
+            onClick={openAddModal}
+            className="flex items-center gap-2 text-sm text-(--primary-color) hover:opacity-70 transition cursor-pointer"
+          >
+            <span className="text-lg">+</span>
+            افزودن آدرس
+          </button>
+        </div>
 
-              <button
-                onClick={openAddModal}
-                className="flex items-center gap-2 text-sm text-(--primary-color) hover:opacity-70 transition cursor-pointer"
-              >
-                <span className="text-lg">+</span>
-                افزودن آدرس
-              </button>
+        <div className="flex flex-col gap-3">
+          <div className="w-full h-40 border-2 border-dashed border-gray-500 text-gray-500 rounded-lg flex justify-center items-center hover:cursor-pointer hover:border-neutral-700 hover:text-neutral-700 transition-colors">
+            <div className="flex gap-1">
+              <p>انتخاب آدرس از روی نقشه</p>
+              <Icons.LocationIcon className="w-5 h-5" />
             </div>
+          </div>
+          {addresses.length > 0 ? (
+            addresses.map((address) => (
+              <div
+                key={address.id}
+                className="border border-gray-200 rounded-lg p-4 hover:border-gray-300 transition"
+              >
+                <div className="flex justify-between items-center gap-3 mb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">
+                      {address.title}
+                    </span>
 
-            <div className="flex flex-col gap-3">
-              <div className="w-full h-40 border-2 border-dashed border-gray-500 text-gray-500 rounded-lg flex justify-center items-center hover:cursor-pointer hover:border-neutral-700 hover:text-neutral-700 transition-colors">
-                <div className="flex gap-1">
-                  <p>انتخاب آدرس از روی نقشه</p>
-                  <Icons.LocationIcon className="w-5 h-5" />
+                    {address.isDefault && (
+                      <span className="text-xs bg-purple-50 text-(--primary-color) px-2 py-1 rounded-full">
+                        آدرس پیش فرض
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-3 text-sm">
+                    <button
+                      onClick={() => openEditModal(address)}
+                      className="text-(--primary-color) hover:text-(--primary-hover) transition cursor-pointer"
+                    >
+                      ویرایش
+                    </button>
+
+                    <button
+                      onClick={() => deleteAddress(address.id)}
+                      className="text-red-500 hover:text-red-600 transition cursor-pointer"
+                    >
+                      حذف
+                    </button>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-3 text-sm text-(--text-secondary)">
+                  <div className="flex flex-wrap gap-x-6 gap-y-2">
+                    <span>گیرنده: {address.name}</span>
+                    <span dir="ltr">{address.phone}</span>
+                  </div>
+
+                  <p className="leading-7">
+                    {address.province}، {address.city}، {address.address}
+                  </p>
+
+                  <div>کد پستی: {address.postalCode}</div>
                 </div>
               </div>
-              {addresses.length > 0 ? (
-                addresses.map((address) => (
-                  <div
-                    key={address.id}
-                    className="border border-gray-200 rounded-lg p-4 hover:border-gray-300 transition"
-                  >
-                    <div className="flex justify-between items-center gap-3 mb-4">
-                      <div className="flex items-center gap-2">
-                        <span className="font-medium">
-                          {address.title}
-                        </span>
-
-                        {address.isDefault && (
-                          <span className="text-xs bg-purple-50 text-(--primary-color) px-2 py-1 rounded-full">
-                            آدرس پیش فرض
-                          </span>
-                        )}
-                      </div>
-
-                      <div className="flex items-center gap-3 text-sm">
-                        <button
-                          onClick={() => openEditModal(address)}
-                          className="text-(--primary-color) hover:text-(--primary-hover) transition cursor-pointer"
-                        >
-                          ویرایش
-                        </button>
-
-                        <button
-                          onClick={() => deleteAddress(address.id)}
-                          className="text-red-500 hover:text-red-600 transition cursor-pointer"
-                        >
-                          حذف
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-3 text-sm text-(--text-secondary)">
-                      <div className="flex flex-wrap gap-x-6 gap-y-2">
-                        <span>گیرنده: {address.name}</span>
-                        <span dir="ltr">{address.phone}</span>
-                      </div>
-
-                      <p className="leading-7">
-                        {address.province}، {address.city}، {address.address}
-                      </p>
-
-                      <div>کد پستی: {address.postalCode}</div>
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <div className="flex flex-col items-center justify-center py-12 text-(--text-secondary)">
-                  <div className="text-4xl mb-3">⌖</div>
-                  <p className="text-sm">هنوز آدرسی ثبت نکرده‌اید.</p>
-                  <button
-                    onClick={openAddModal}
-                    className="mt-4 text-sm text-(--primary-color) hover:opacity-70 cursor-pointer"
-                  >
-                    افزودن اولین آدرس
-                  </button>
-                </div>
-              )}
+            ))
+          ) : (
+            <div className="flex flex-col items-center justify-center py-12 text-(--text-secondary)">
+              <div className="text-4xl mb-3">⌖</div>
+              <p className="text-sm">هنوز آدرسی ثبت نکرده‌اید.</p>
+              <button
+                onClick={openAddModal}
+                className="mt-4 text-sm text-(--primary-color) hover:opacity-70 cursor-pointer"
+              >
+                افزودن اولین آدرس
+              </button>
             </div>
-          </section>
+          )}
         </div>
-      </div>
+      </section>
 
       {modalOpen && (
         <div
@@ -363,6 +354,6 @@ export default function Addresses() {
           </div>
         </div>
       )}
-    </Container>
+      </>
   );
 }

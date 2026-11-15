@@ -2,11 +2,11 @@
 
 import { CrossIcon, OpenInIcon, SearchIcon, TomanThinIcon } from "@/app/assets/icons";
 import searchProducts from "@/app/lib/searchProducts";
-import { useRef, useState } from "react";
+import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 export default function SearchBar() {
   const searchParams = useSearchParams();
@@ -25,6 +25,21 @@ export default function SearchBar() {
     setIsSearchOpen(false);
     inputRef.current.blur();
   }
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        document.getElementById("search-input")?.focus();
+        setIsSearchOpen(true);
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return(
     <>
@@ -48,9 +63,14 @@ export default function SearchBar() {
           onChange={(e) => setSearchInput(e.target.value)}
           className="placeholder:text-gray-500 text-xs font-medium w-full h-full outline-none"
         />
+        {(searchInput === '' && !isSearchOpen) ? (
+          <div className="max-md:hidden absolute left-2.5 top-1/2 -translate-y-1/2 bg-gray-300 text-xs px-2 py-1 rounded-md">
+            Ctrl + K
+          </div>
+        ) : ''}
         {(isSearchOpen && searchInput !== '') && (
-          <button onClick={(e) => {e.stopPropagation; setSearchInput('');}} className="absolute left-2 rounded-md bg-red-200 text-red-500">
-            <CrossIcon className="w-5 h-5" />
+          <button onClick={(e) => {e.stopPropagation; setSearchInput('');}} className="absolute left-2 p-1 rounded-md bg-red-200 text-red-500">
+            <X className="w-4 h-4" />
           </button>
         )}
         {isSearchOpen && (

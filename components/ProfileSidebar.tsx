@@ -1,5 +1,8 @@
+"use client";
+
 import * as Icons from "@/app/assets/icons"
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function ProfileSidebar({ className, active }: { className: string, active: string }) {
   const items = [
@@ -47,6 +50,8 @@ export default function ProfileSidebar({ className, active }: { className: strin
     },
   ];
 
+  const pathname = usePathname();
+
   return(
     <aside className={`w-60 divide-y divide-gray-300 border border-gray-300 rounded-lg h-fit sticky ` + className}>
       <div>
@@ -88,7 +93,7 @@ export default function ProfileSidebar({ className, active }: { className: strin
       </div>
       <ul className="w-full divide-y divide-gray-300">
         {items.map(i => {
-          if(active === i.name) {
+          if(pathname.endsWith(i.name)) {
             return(
               <li key={i.id}>
                 <Link href={`profile/${i.name}`} className="w-full flex gap-1 py-2 px-4 relative
