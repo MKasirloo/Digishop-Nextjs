@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
       )}
       <div className="product-card__info">
         <div className="w-full h-50 center p-2.5">
-          <Image src={product.image} alt={product.name} width={200} height={300} className="object-contain" />
+          <Image src={product.image} alt={product.name} width={200} height={300} className="object-contain h-auto" />
         </div>
         <div className="font-medium mt-3 mb-2 leading-6">
           <p>{product.name}</p>

@@ -4,21 +4,17 @@ import { useEffect, useState } from "react";
 import ProductGrid from "@/components/ProductsGrid";
 import ProductsFilter from "@/components/ProductsFilter";
 import * as Icons from "@/app/assets/icons";
-import "./Products.css";
-import { useSearchParams } from "next/navigation";
-import searchProducts from "@/app/lib/searchProducts";
 import ProductsSkeleton from "@/components/Skeletons/ProductsSkeleton";
+import { SearchX } from "lucide-react";
 
 export default function Products() {
-    const searchParams = useSearchParams();
-    const query = searchParams.get("query");
-    const category = searchParams.get("category");
 
     const [products, setProducts] = useState([]);
     const [currentOrderBy, setCurrentOrderBy] = useState("bestSelling");
     const [isOrderByClosed, setIsOrderByClosed] = useState(true);
     const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 		const [isLoading, setIsLoading] = useState(true);
+		const [filteredProducts, setFilteredProducts] = useState([]);
 		
     const orderByText: Record<string, string> = {
 			bestSelling: "پرفروش ترین",
@@ -35,6 +31,7 @@ export default function Products() {
 						throw new Error("Failed to fetch products");
 					const data = await response.json();
 					setProducts(data);
+					setFilteredProducts(data);
 				} catch(e) {
 					console.log(e);
 				} finally {
@@ -43,16 +40,6 @@ export default function Products() {
 			}
 			getProducts();
 		}, []);
-		
-		const [filteredProducts, setFilteredProducts] = useState(products);
-
-    useEffect(() => {
-			setFilteredProducts(
-				query
-					? searchProducts(query)
-					: products.filter(p => category ? p.category === category : true)
-        );
-    }, [query, category, products]);
 
     function orderProducts(action: string) {
 			const sortedProducts = [...filteredProducts];
@@ -80,8 +67,8 @@ export default function Products() {
 
   return (
     <>
-			<div className={`mobileFilterMenuOverlay ${isFilterMenuOpen ? "open" : ''}`} onClick={() => setIsFilterMenuOpen(false)}></div>
-			<div className={`fixed inset-0 bg-black/50 z-50 ${isOrderByClosed ? "hidden" : ''}`} onClick={() => setIsOrderByClosed(true)}></div>
+			<div className={isFilterMenuOpen ? "max-lg:fixed max-lg:inset-0 max-lg:bg-black/50 max-lg:z-1000" : "max-lg:hidden"} onClick={() => setIsFilterMenuOpen(false)}></div>
+			<div className={`fixed inset-0 bg-black/50 z-1000 ${isOrderByClosed ? "hidden" : ''}`} onClick={() => setIsOrderByClosed(true)}></div>
 			<div className="flex flex-row-reverse justify-between">
 				<div className="flex-1">
 					<div className=" flex justify-between items-center">
@@ -95,7 +82,7 @@ export default function Products() {
 									{orderByText[currentOrderBy]}
 								</div>
 							</div>
-							<div className={`flex gap-1.25 *:p-2.5 ${isOrderByClosed ? 'closed' : ''} *:rounded-lg *:hover:bg-(--primary-color)/10! transition-colors py-2`}>
+							<div className={`flex gap-1.25 *:p-2.5 ${isOrderByClosed ? "max-md:hidden" : "bg-white flex-col divide-y divide-gray-300 fixed top-1/2 left-1/2 z-10001 -translate-y-1/2 -translate-x-1/2 rounded-md"} *:rounded-lg *:hover:bg-(--primary-color)/10! transition-colors py-2`}>
 								<button
 									className={`${currentOrderBy === 'bestSelling' ? "text-(--primary-color)" : ''}`}
 									onClick={() => {
@@ -138,21 +125,38 @@ export default function Products() {
 								</button>
 							</div>
 						</div>
-						<button className="flex lg:hidden btn-primary justify-between items-center gap-1.5 py-0.5 px-2.5" onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}>
+						<button className="flex ml-2 lg:hidden btn-primary justify-between items-center gap-1.5 py-0.5 px-2.5" onClick={() => setIsFilterMenuOpen(!isFilterMenuOpen)}>
 							<p>فیلترها</p>
 							<Icons.FilterIcon />
 						</button>
 					</div>
 					{
-						isLoading ? <ProductsSkeleton /> : <ProductGrid products={filteredProducts} />
+						isLoading
+						? (<ProductsSkeleton />) 
+						: filteredProducts.length === 0
+							? <div className="flex flex-col items-center justify-center gap-4 py-16 text-center">
+									<div className="flex items-center justify-center w-20 h-20 rounded-full bg-(--primary-color)/10">
+										<SearchX size={38} className="text-(--primary-color)" />
+									</div>
+									<div className="flex flex-col gap-2">
+										<h2 className="text-lg font-bold text-gray-800">
+											محصولی پیدا نشد!
+										</h2>
+										<p className="text-sm text-gray-500 max-w-sm leading-7">
+											متأسفانه محصولی با این مشخصات پیدا نشد.
+											فیلترها رو تغییر دهید یا دوباره امتحان کنید.
+										</p>
+									</div>
+								</div> 
+							: <ProductGrid products={filteredProducts} />
 					}
 				</div>
-				<div className={`w-1/5 justify-center mx-2 border border-gray-300 rounded-lg shadow-md h-fit max-lg:h-full max-md:z-10001 max-lg:m-0 max-lg:fixed max-lg:right-0 max-lg:top-0 max-lg:bottom-0 max-lg:w-75 ${isFilterMenuOpen ? "max-lg:translate-x-0" : "max-lg:translate-x-full"} bg-white transition-transform ${isFilterMenuOpen ? "open" : ''}`}>
+				<div className={`sticky top-20 w-1/5 justify-center mx-2 border border-gray-300 rounded-lg shadow-md h-fit max-lg:h-full max-md:z-10001 max-lg:m-0 max-lg:fixed max-lg:right-0 max-lg:top-0 max-lg:bottom-0 max-lg:w-75 ${isFilterMenuOpen ? "max-lg:translate-x-0" : "max-lg:translate-x-full"} bg-white transition-transform ${isFilterMenuOpen ? "open" : ''}`}>
 					<h2 className="font-bold text-(--text-natural) text-2xl py-2 px-3">
 						فیلتر ها 
 					</h2>
 					<ProductsFilter
-						products={filteredProducts}
+						products={products}
 						setFilteredProducts={setFilteredProducts}
 					/>
 				</div>

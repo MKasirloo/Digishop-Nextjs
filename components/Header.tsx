@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import * as Icons from "../app/assets/icons";
-import categories from "../app/data/categories";
+import { categories } from "../app/data/categories";
 import SearchBar from "./UI/Header/SearchBar";
 import Link from "next/link";
 import Image from "next/image";
@@ -36,7 +36,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
         <div className="flex gap-5 bg-white fixed left-0 right-0 top-0 p-2.5 h-[68px] justify-between items-center shadow-sm z-100">
           <div className="flex h-full gap-2.5 items-center max-w-200 w-full">
             <Link href="/">
-              <Image width={200} height={50} src="/images/logo.png" alt="logo" className="max-md:hidden" />
+              <Image width={200} height={50} src="/images/logo.png" alt="logo" className="max-md:hidden" loading="eager" />
               <Image width={50} height={50} src="/images/logo-mini.png" alt="logo" className="md:hidden" />
             </Link>
             <SearchBar />

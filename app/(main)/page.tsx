@@ -12,7 +12,7 @@ import Link from "next/link";
 import Stories from "@/components/Stories";
 import OfferProductSlider from "@/components/OfferProductSlider";
 import BrandsSlider from "@/components/BrandsSlider";
-import categories from "@/app/data/categories";
+import { categories } from "@/app/data/categories";
 import CategoryCard from "@/components/CategoryCard";
 
 export default function Page() {

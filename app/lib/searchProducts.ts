@@ -1,7 +1,7 @@
-import categories from "../data/categories";
-import products from "../data/products";
+import { categories } from "../data/categories";
+import initialProducts from "../data/products";
 
-export default function searchProducts(query: string) {
+export default function searchProducts(query: string, products = initialProducts) {
   const q = query.toLowerCase().trim();
   return(products.filter(p => (
     p.name.toLowerCase().includes(q)
