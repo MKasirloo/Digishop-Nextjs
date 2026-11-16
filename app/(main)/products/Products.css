@@ -1,68 +1,3 @@
-.productsWrapper {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-}
-
-.productsContainer {
-  width: 75%;
-}
-
-.productFilters {
-  display: flex;
-  justify-content: center;
-}
-
-.orderByText {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.orderBySection {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.orderByList {
-  display: flex;
-  gap: 5px;
-}
-
-.currentOrderBy {
-  display: none;
-}
-
-.orderByListItem {
-  background: none;
-  border: none;
-  outline: none;
-  padding: 10px;
-}
-
-.orderByListItem.selected {
-  color: #4d00ff;
-}
-
-.orderByListItem:hover {
-  cursor: pointer;
-}
-
-.OrderListOverlay {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #00000050;
-  z-index: 9999;
-}
-
-.OrderListOverlay.hidden {
-  display: none;
-}
-
 .mobileOrderByButton {
   pointer-events: none;
   padding: 10px;
@@ -76,25 +11,6 @@
 
 @media screen and (max-width: 1080px) {
 
-  .productFilters {
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 300px;
-    transform: translateX(300px);
-    background-color: #fff;
-    transition: transform 0.2s ease;
-  }
-
-  .productsContainer {
-    width: 100%;
-  }
-
-  .productsContainerTop {
-    align-content: center;
-  }
-
   .showFiltersButton {
     display: flex;
     justify-content: space-between;
@@ -107,14 +23,6 @@
     background-color: var(--primary-color);
     color: white;
     border-radius: 8px;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    p {
-      color: white;
-    }
 
   }
 
@@ -133,7 +41,7 @@
 
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 768px) {
   .orderByList {
     position: fixed;
     top: 50%;
@@ -165,10 +73,6 @@
 
   .orderByList.closed {
     display: none;
-  }
-
-  .currentOrderBy {
-    display: block;
   }
 
   .mobileOrderByButton {

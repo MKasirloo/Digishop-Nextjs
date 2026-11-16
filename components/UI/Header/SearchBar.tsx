@@ -11,13 +11,13 @@ import { Search, X } from "lucide-react";
 export default function SearchBar() {
   const searchParams = useSearchParams();
   const query = searchParams.get("query");
-  const [searchInput, setSearchInput] = useState(query ? query : '');
+  const [searchInput, setSearchInput] = useState(query ?? '');
+  const [debouncedSearch, setDebouncedSearch] = useState(searchInput);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const res = (searchInput !== '' ? searchProducts(searchInput) : []);
   const inputRef = useRef(null);
   const router = useRouter();
   const topSearchs = ["موبایل", "iPhone", "اپل"];
-
+  
   function handleSearch() {
     if(searchInput === '')
       return;
@@ -25,6 +25,14 @@ export default function SearchBar() {
     setIsSearchOpen(false);
     inputRef.current.blur();
   }
+  
+  useEffect(() => {
+    const timeOut = setTimeout(() => setDebouncedSearch(searchInput), 200);
+    
+    return () => clearTimeout(timeOut);
+  }, [searchInput]);
+  
+  const res = (debouncedSearch.trim() !== '' ? searchProducts(debouncedSearch.trim()) : []);
 
   useEffect(() => {
     function handleKeyDown(e) {
@@ -53,23 +61,32 @@ export default function SearchBar() {
         <label htmlFor="search-input">
           <Search className="w-6" />
         </label>
+        {
+          searchInput === '' 
+          ? <label htmlFor="search-input" className="w-fit flex gap-1 items-center absolute right-11.5">
+            <p className="whitespace-nowrap text-xs">جستجو در </p>
+            <span className="font-lalezar text-(--primary-color) text-lg">
+              دیجی&zwnj;شاپ
+            </span>
+          </label>
+          : ''
+        }
         <input
           id="search-input"
           value={searchInput}
           type="text"
           ref={inputRef}
-          placeholder="جستجو در محصولات..."
           onKeyDown={(e) => {if(e.key === "Enter") handleSearch()}}
           onChange={(e) => setSearchInput(e.target.value)}
           className="placeholder:text-gray-500 text-xs font-medium w-full h-full outline-none"
         />
         {(searchInput === '' && !isSearchOpen) ? (
-          <div className="max-md:hidden absolute left-2.5 top-1/2 -translate-y-1/2 bg-gray-300 text-xs px-2 py-1 rounded-md">
+          <div className="max-md:hidden absolute left-2.5 top-1/2 -translate-y-1/2 bg-gray-300/60 shadow-sm text-xs px-2 py-1 rounded-md">
             Ctrl + K
           </div>
         ) : ''}
         {(isSearchOpen && searchInput !== '') && (
-          <button onClick={(e) => {e.stopPropagation; setSearchInput('');}} className="absolute left-2 p-1 rounded-md bg-red-200 text-red-500">
+          <button onClick={(e) => {e.stopPropagation(); setSearchInput('');}} className="absolute left-2 p-1 rounded-md bg-red-200 text-red-500">
             <X className="w-4 h-4" />
           </button>
         )}
