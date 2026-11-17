@@ -151,15 +151,19 @@ export default function Products() {
 							: <ProductGrid products={filteredProducts} />
 					}
 				</div>
-				<div className={`sticky top-20 w-1/5 justify-center mx-2 border border-gray-300 rounded-lg shadow-md h-fit max-lg:h-full max-md:z-10001 max-lg:m-0 max-lg:fixed max-lg:right-0 max-lg:top-0 max-lg:bottom-0 max-lg:w-75 ${isFilterMenuOpen ? "max-lg:translate-x-0" : "max-lg:translate-x-full"} bg-white transition-transform ${isFilterMenuOpen ? "open" : ''}`}>
-					<h2 className="font-bold text-(--text-natural) text-2xl py-2 px-3">
-						فیلتر ها 
-					</h2>
-					<ProductsFilter
-						products={products}
-						setFilteredProducts={setFilteredProducts}
-					/>
-				</div>
+				<aside className={`w-1/5 shrink-0 lg:sticky bg-white shadow-lg rounded-lg mx-2 lg:top-30 lg:self-start lg:max-h-[calc(100vh-112px)] max-lg:fixed max-lg:right-0 max-lg:top-0 max-lg:bottom-0 max-lg:w-75 max-lg:z-10001 transition-transform ${!isFilterMenuOpen ? "max-lg:translate-x-full" : ''}`}>
+					<div className="lg:max-h-[calc(100vh-112px)] lg:overflow-y-auto lg:overscroll-contain">
+						<h2 className="font-bold text-(--text-natural) text-2xl py-2 px-3">
+							فیلتر ها 
+						</h2>
+						<ProductsFilter
+							products={products}
+							setFilteredProducts={setFilteredProducts}
+						/>
+					</div>
+				</aside>
+				{/* <div className={`sticky top-20 w-1/5 justify-center mx-2 border border-gray-300 rounded-lg shadow-md h-fit max-lg:h-full max-md:z-10001 max-lg:m-0 max-lg:fixed max-lg:right-0 max-lg:top-0 max-lg:bottom-0 max-lg:w-75 ${isFilterMenuOpen ? "max-lg:translate-x-0" : "max-lg:translate-x-full"} bg-white transition-transform ${isFilterMenuOpen ? "open" : ''}`}>
+				</div> */}
 			</div>
     </>
   );

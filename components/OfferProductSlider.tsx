@@ -13,17 +13,17 @@ import SliderProductCard from "./SliderProductCard";
 export default function OfferProductSlider() {
   return(
     <Swiper
-      slidesPerView="auto"
       spaceBetween={8}
       navigation
       freeMode={true}
       modules={[Navigation, FreeMode]}
-      className="offer-cards"
+      className="w-full"
+      slidesPerView="auto"
     >
       {products.map(p => {
         if(p.discount_percent > 0) {
           return(
-            <SwiperSlide className="offerCardSlide">
+            <SwiperSlide className="w-fit! first:rounded-r-lg last:rounded-l-lg overflow-hidden">
               <SliderProductCard product={p} />
             </SwiperSlide>
           );

@@ -21,7 +21,7 @@ export default function SearchBar() {
   function handleSearch() {
     if(searchInput === '')
       return;
-    router.replace(`/products?query=${encodeURIComponent(searchInput)}`);
+    router.replace(`/products?search=${encodeURIComponent(searchInput)}`);
     setIsSearchOpen(false);
     inputRef.current.blur();
   }

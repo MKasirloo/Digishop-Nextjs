@@ -1,28 +1,26 @@
 import Link from "next/link";
 import Image from "next/image";
-import { TomanThinIcon } from "@/app/assets/icons";
+import { TomanIcon } from "@/app/assets/icons";
 
-export default function SliderProductCard({ product }) {
+export default function SliderProductCard({ product, className = "" }) {
   return(
-    <Link href={`/products/${product.id}`} className="offer-card">
-      <div className="offer-card__info">
-        <div className="offer-card__img-container">
-            <Image width={500} height={500} className="w-full" src={product.image} alt={product.name} />
+    <Link href={`/products/${product.id}`} className={`flex flex-col justify-between shrink-0 h-70 p-4 bg-white text-sm w-45 ${className}`}>
+      <div>
+        <div className="size-37.5 flex items-center">
+            <Image width={150} height={150} className="w-full" src={product.image} alt={product.name} />
         </div>
-        <div className="offer-card__product-name">
+        <div className="my-1 font-medium line-clamp-2">
             <p>{product.name}</p>
         </div>
-        <div className="offer-card__offer">
-            <span className="offer-card__old-price">{product.price.toLocaleString("fa-IR")}</span>
-            <span className="offer-card__offer-percent">{product.discount_percent}%</span>
-        </div>
       </div>
-      <div className="offer-card__price-wrapper">
-        <div className="offer-card__price">
-          <span className="toman">
-            <TomanThinIcon className="w-4 h-4" />
-          </span>
-          <span>{(product.price * (1 - (product.discount_percent / 100))).toLocaleString("fa-IR")}</span>
+      <div>
+        <div className="flex flex-row-reverse items-center gap-1">
+            <span className="line-through text-(--text-secondary)">{product.price.toLocaleString("fa-IR")}</span>
+            <span className="bg-(--offer-color) text-white rounded-md px-1">{product.discount_percent}%</span>
+        </div>
+        <div className="flex items-center flex-row-reverse gap-1 font-bold text-(--text-natural) text-base">
+          <TomanIcon className="size-4" />
+          <span className="translate-y-1">{(product.price * (1 - (product.discount_percent / 100))).toLocaleString("fa-IR")}</span>
         </div>
       </div>
     </Link>

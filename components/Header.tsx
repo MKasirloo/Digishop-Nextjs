@@ -64,8 +64,8 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
                 )
               }
             </div>
-            <button onClick={() => setIsMobileMenuOpen(true)} className="md:hidden flex size-9 items-center justify-center rounded-lg bg-white text-xl text-gray-600 shadow-md hover:text-(--primary-color)">
-              <Icons.MenuIcon />
+            <button type="button" aria-label="باز کردن منو" onClick={() => setIsMobileMenuOpen(true)} className="md:hidden flex size-9 items-center justify-center rounded-lg bg-white text-xl text-gray-600 shadow-md hover:text-(--primary-color)">
+              <Menu />
             </button>
           </div>
         </div>
@@ -112,7 +112,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
             >
               |
             </li>
-            <li className="flex relative items-center justify-between py-2 px-2.5 gap-1.25 font-normal text-sm text-neutral-700 hover:cursor-pointer hover:text-(--offer-color) transition-colors
+            <li className="relative font-normal text-sm text-neutral-700 hover:cursor-pointer hover:text-(--offer-color) transition-colors
               after:content-['']
             after:absolute
             after:left-0
@@ -122,8 +122,10 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
             after:bg-(--offer-color)
             after:transition-all
             hover:after:w-full">
-              <Icons.SaleIcon />
-              فروش ویژه!
+              <Link href="/landing/offer" className="py-2 px-2.5 flex items-center gap-1">
+                <Icons.SaleIcon />
+                فروش ویژه!
+              </Link>
             </li>
             <li className="flex relative items-center justify-between py-2 px-2.5 gap-1.25 font-normal text-sm text-neutral-700 hover:cursor-pointer hover:text-(--primary-color) transition-colors
               after:content-['']
@@ -167,7 +169,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
               <Icons.PhoneIcon />
               ارتباط با ما
             </li>
-            <li className="flex relative items-center justify-between py-2 px-2.5 gap-1.25 font-normal text-sm text-neutral-700 hover:cursor-pointer hover:text-(--primary-color) transition-colors
+            <li className="relative font-normal text-sm text-neutral-700 hover:cursor-pointer hover:text-(--primary-color) transition-colors
               after:content-['']
             after:absolute
             after:left-0
@@ -178,8 +180,10 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
             after:transition-all
             hover:after:w-full
             ">
-              <Icons.InfoIcon />
-              درباره ما
+              <Link href="/about" className="py-2 px-2.5 flex gap-1 items-center justify-between">
+                <Icons.InfoIcon />
+                درباره ما
+              </Link>
             </li>
           </ul>
         </div>

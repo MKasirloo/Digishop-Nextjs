@@ -4,7 +4,6 @@ import * as Icons from '@/app/assets/icons'
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "./Home.css";
 
 import MainSlider from "@/components/MainSlider";
 import Image from "next/image";
@@ -36,13 +35,13 @@ export default function Page() {
         <div className="flex flex-wrap gap-10 justify-around">
           {categories.map(c => (<CategoryCard key={c.id} category={c} />))}
         </div>
-        <div className="offer mt-10">
-          <div className="offer-title">
-						<div className="offerTitleImageContainer">
-            	<Image width={500} height={500} className="w-full" src="/images/offer.png" alt="offer-icon" />
+        <div className="flex relative items-center gap-4 bg-linear-to-r from-(--offer-color) to-red-500 rounded-2xl p-5 pl-0 mb-12.5 mt-10 max-md:flex-col">
+          <div className="flex md:flex-col max-md:justify-around max-md:w-50 justify-center items-center w-37.5">
+						<div className="max-md:size-50 max-md:grid max-md:place-items-center">
+            	<Image width={200} height={200} className="w-full" src="/images/offer.png" alt="offer-icon" />
 						</div>
             <div className="offerTitleTextContainer">
-              <p>
+              <p className="text-white font-lalezar text-center text-3xl">
                 پیشنهاد <br />
                 شگفت انگیز!
               </p>

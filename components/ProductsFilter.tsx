@@ -14,7 +14,7 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
   const categoryParam = searchParams.get("categories");
-  
+
   const categories = categoryParam?.split(",") ?? [];
   const minPrice = Number(searchParams.get("minPrice")) || 0;
   const maxPrice = Number(searchParams.get("maxPrice")) || 1_000_000_000;
@@ -113,7 +113,7 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
   }
 
   return (
-    <div className="flex flex-col justify-between">
+    <div className="flex flex-col justify-between p-2 relative max-h-full">
       <ul className="w-full overflow-y-auto font-medium *:p-2 *:border-b *:border-gray-300 *:last:border-none *:w-full">
         <li>
           <div className="flex justify-between items-center gap-2 h-10">
@@ -148,7 +148,7 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
               <ChevronDown className="group-open:rotate-180 transition-transform" />
             </summary>
             <div className="w-full">
-              <div className="flex gap-2 my-5">
+              <div className="grid grid-cols-[auto_1fr_auto] my-5">
                 <label htmlFor="min-filter" className="text-(--text-secondary)">
                   از
                 </label>
@@ -158,11 +158,11 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
                   value={filters.price.min.toLocaleString("fa-IR")}
                   step={500000}
                   onChange={(e) => handlePriceChange(e, "min")}
-                  className="flex-1 outline-none border-b border-gray-300 text-center text-xl transition-colors focus:border-(--primary-color)"
+                  className="w-full outline-none border-b border-gray-300 text-center text-xl transition-colors focus:border-(--primary-color)"
                 />
                 <TomanIcon width={20} />
               </div>
-              <div className="flex gap-2 my-5">
+              <div className="grid grid-cols-[auto_1fr_auto] my-5">
                 <label htmlFor="max-filter" className="text-(--text-secondary)">
                   تا
                 </label>
@@ -172,7 +172,7 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
                   value={filters.price.max.toLocaleString("fa-IR")}
                   step={500000}
                   onChange={(e) => handlePriceChange(e, "max")}
-                  className="flex-1 outline-none border-b border-gray-300 text-center text-xl transition-colors focus:border-(--primary-color)"
+                  className="w-full outline-none border-b border-gray-300 text-center text-xl transition-colors focus:border-(--primary-color)"
                 />
                 <TomanIcon width={20} />
               </div>
@@ -278,10 +278,8 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
             </div>
           </details>
         </li>
-        <li>
-          <Button className="btn-primary w-full py-2" onClick={applyFilters}>اعمال فیلتر ها</Button>
-        </li>
       </ul>
+      <Button className="btn-primary w-full py-2" onClick={applyFilters}>اعمال فیلتر ها</Button>
     </div>
   );
 }
