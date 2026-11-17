@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { TomanIcon } from "@/app/assets/icons";
 import { Check, ChevronDown } from "lucide-react";
 import Switch from "./UI/Switch";
@@ -14,6 +14,7 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
   const searchParams = useSearchParams();
   const search = searchParams.get("search");
   const categoryParam = searchParams.get("categories");
+  
   const categories = categoryParam?.split(",") ?? [];
   const minPrice = Number(searchParams.get("minPrice")) || 0;
   const maxPrice = Number(searchParams.get("maxPrice")) || 1_000_000_000;
@@ -83,6 +84,34 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
     router.push(`${pathname}?${params.toString()}`);
   }
 
+  function handlePriceChange(e: ChangeEvent<HTMLInputElement>, type: string) {
+    const value = Number(e.target.value.replace(/[٬,،]/g, "").replace(/[۰-۹]/g, d => String(d.charCodeAt(0) - 1776)));
+  
+    if (Number.isNaN(value)) return;
+  
+    if (type === "min") {
+      if (value > filters.price.max || value < 0) return;
+  
+      setFilters(prev => ({
+        ...prev,
+        price: {
+          ...prev.price,
+          min: value
+        }
+      }));
+    } else {
+      if (value < filters.price.min || value > 1_000_000_000) return;
+  
+      setFilters(prev => ({
+        ...prev,
+        price: {
+          ...prev.price,
+          max: value
+        }
+      }));
+    }
+  }
+
   return (
     <div className="flex flex-col justify-between">
       <ul className="w-full overflow-y-auto font-medium *:p-2 *:border-b *:border-gray-300 *:last:border-none *:w-full">
@@ -126,9 +155,9 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
                 <input
                   id="min-filter"
                   type="text"
-                  value={filters.price.min}
-                  step={100000}
-                  onChange={(e) => setFilters(prev => ({...prev, price: {...prev.price, min: Number(e.target.value)}}))}
+                  value={filters.price.min.toLocaleString("fa-IR")}
+                  step={500000}
+                  onChange={(e) => handlePriceChange(e, "min")}
                   className="flex-1 outline-none border-b border-gray-300 text-center text-xl transition-colors focus:border-(--primary-color)"
                 />
                 <TomanIcon width={20} />
@@ -140,9 +169,9 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
                 <input
                   id="max-filter"
                   type="text"
-                  value={filters.price.max}
-                  step={100000}
-                  onChange={(e) => setFilters(prev => ({...prev, price: {...prev.price, max: Number(e.target.value)}}))}
+                  value={filters.price.max.toLocaleString("fa-IR")}
+                  step={500000}
+                  onChange={(e) => handlePriceChange(e, "max")}
                   className="flex-1 outline-none border-b border-gray-300 text-center text-xl transition-colors focus:border-(--primary-color)"
                 />
                 <TomanIcon width={20} />
@@ -184,7 +213,7 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
                   min={0}
                   max={1_000_000_000}
                   value={filters.price.min}
-                  onChange={(e) => setFilters(prev => ({...prev, price: {...prev.price, min: Number(e.target.value)}}))}
+                  onChange={(e) => handlePriceChange(e, "min")}
                   className="z-2"
                 />
                 <input
@@ -194,7 +223,7 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
                   min={0}
                   max={1_000_000_000}
                   value={filters.price.max}
-                  onChange={(e) => setFilters(prev => ({...prev, price: {...prev.price, max: Number(e.target.value)}}))}
+                  onChange={(e) => handlePriceChange(e, "max")}
                   className="z-2"
                 />
               </div>

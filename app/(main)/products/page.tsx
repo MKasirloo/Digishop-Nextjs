@@ -82,7 +82,7 @@ export default function Products() {
 									{orderByText[currentOrderBy]}
 								</div>
 							</div>
-							<div className={`flex gap-1.25 *:p-2.5 ${isOrderByClosed ? "max-md:hidden" : "bg-white flex-col divide-y divide-gray-300 fixed top-1/2 left-1/2 z-10001 -translate-y-1/2 -translate-x-1/2 rounded-md"} *:rounded-lg *:hover:bg-(--primary-color)/10! transition-colors py-2`}>
+							<div className={`flex gap-1 *:p-2.5 ${isOrderByClosed ? "max-md:hidden" : "bg-white flex-col divide-y divide-gray-300 fixed top-1/2 left-1/2 z-10001 -translate-y-1/2 -translate-x-1/2 rounded-md"} *:rounded-lg *:hover:bg-(--primary-color)/10! transition-colors py-2`}>
 								<button
 									className={`${currentOrderBy === 'bestSelling' ? "text-(--primary-color)" : ''}`}
 									onClick={() => {

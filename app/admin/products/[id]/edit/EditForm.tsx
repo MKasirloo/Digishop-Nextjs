@@ -15,7 +15,7 @@ import {
   Trash2,
 } from "lucide-react";
 import Link from "next/link";
-import categories from "@/app/data/categories";
+import { categories } from "@/app/data/categories";
 
 type Color = {
   name: string;
