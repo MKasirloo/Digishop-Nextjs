@@ -101,7 +101,7 @@ export default function OffersPage() {
               </div>
             </div>
 
-            <div className="relative mx-auto flex aspect-square w-full max-w-[480px] items-center justify-center">
+            <div className="relative mx-auto flex aspect-square w-full max-w-120 items-center justify-center">
               <div className="absolute size-[85%] rounded-full border border-white/20" />
               <div className="absolute size-[65%] rounded-full border border-dashed border-white/30" />
 
