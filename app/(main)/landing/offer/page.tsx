@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -6,7 +5,6 @@ import {
   ArrowLeft,
   ArrowUpLeft,
   BadgePercent,
-  Clock3,
   Flame,
   Headphones,
   ShieldCheck,
@@ -37,19 +35,19 @@ const categories = [
   {
     title: "گوشی موبایل",
     subtitle: "پیشنهادهای ویژه موبایل",
-    href: "/products?category=mobile",
+    href: "/products?categories=mobile",
     image: "/images/offers/mobile.png",
   },
   {
     title: "لپ‌تاپ",
     subtitle: "تخفیف‌های جذاب لپ‌تاپ",
-    href: "/products?category=laptop",
+    href: "/products?categories=laptop",
     image: "/images/offers/laptop.png",
   },
   {
     title: "لوازم جانبی",
     subtitle: "انتخاب‌های اقتصادی",
-    href: "/products?category=accessories",
+    href: "/products?categories=accessories",
     image: "/images/offers/accessories.png",
   },
 ];

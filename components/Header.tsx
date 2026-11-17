@@ -106,10 +106,7 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
                 </ul>
               </div>
             </div>
-            <li
-              className="navbar-bottom__first-divider"
-              style={{ color: "rgb(115, 115, 115)" }}
-            >
+            <li className="text-gray-300">
               |
             </li>
             <li className="relative font-normal text-sm text-neutral-700 hover:cursor-pointer hover:text-(--offer-color) transition-colors
