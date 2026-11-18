@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import localFont from 'next/font/local'
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,8 +61,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="fa"
       dir="rtl"
+      suppressHydrationWarning
       className={`${shabnam.variable} ${geistSans.variable} h-full antialiased`}
-      data-scroll-behavior="smooth"
     >
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -77,7 +78,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           shadow="0 0 10px #4D00FF, 0 0 20px #4D00FF, 0 0 30px #4D00FF"
           zIndex={9999999}
         />
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

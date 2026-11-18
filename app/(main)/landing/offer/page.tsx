@@ -54,7 +54,7 @@ const categories = [
 
 export default function OffersPage() {
   return (
-    <main dir="rtl" className="min-h-screen overflow-hidden bg-[#fafafa]">
+    <main dir="rtl" className="min-h-screen overflow-hidden bg-(--background)">
       <section className="relative mx-auto max-w-[1500px] px-4 pt-7 sm:px-7 lg:pt-10">
         <div className="relative isolate overflow-hidden rounded-[30px] bg-(--offer-color) px-6 py-14 text-white shadow-xl shadow-red-200/40 sm:px-12 sm:py-20 lg:rounded-[40px] lg:px-16">
           <div className="absolute -left-24 -top-32 -z-10 size-96 rounded-full bg-white/10 blur-3xl" />

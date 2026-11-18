@@ -52,14 +52,14 @@ export default function SearchBar() {
   return(
     <>
       {isSearchOpen && (<div className="fixed inset-0 bg-black/30 z-100" onClick={() => setIsSearchOpen(false)}></div>)}
-      <div className={`z-100001! flex items-center gap-2.5 bg-gray-200/70 h-10 max-w-150 w-full pr-2.5 relative text-gray-500! hover:bg-gray-200 focus-within:bg-gray-200 transition-colors ${isSearchOpen ? "rounded-t-lg bg-white! border-b border-b-gray-300" : "rounded-lg"}`}
+      <div className={`z-100001! flex items-center gap-2.5 bg-gray-200/70 dark:bg-gray-800 h-10 max-w-150 w-full pr-2.5 relative text-(--text-primary) hover:bg-gray-200 dark:hover:bg-gray-900 focus-within:bg-gray-200 dark:focus-within:bg-gray-900 transition-colors ${isSearchOpen ? "rounded-t-lg bg-white! dark:bg-gray-900! border-b border-b-gray-300 dark:border-b-gray-800!" : "rounded-lg"}`}
         onClick={() => {
           setIsSearchOpen(true);
           inputRef.current?.focus();
         }}
       >
         <label htmlFor="search-input">
-          <Search className="w-6" />
+          <Search className="w-6 text-gray-500" />
         </label>
         {
           searchInput === '' 
@@ -78,10 +78,10 @@ export default function SearchBar() {
           ref={inputRef}
           onKeyDown={(e) => {if(e.key === "Enter") handleSearch()}}
           onChange={(e) => setSearchInput(e.target.value)}
-          className="placeholder:text-gray-500 text-xs font-medium w-full h-full outline-none"
+          className="text-xs font-medium w-full h-full outline-none"
         />
         {(searchInput === '' && !isSearchOpen) ? (
-          <div className="max-md:hidden absolute left-2.5 top-1/2 -translate-y-1/2 bg-gray-300/60 shadow-sm text-xs px-2 py-1 rounded-md">
+          <div className="max-md:hidden absolute left-2.5 top-1/2 -translate-y-1/2 bg-gray-300/60 dark:bg-gray-700 shadow-sm text-xs px-2 py-1 rounded-md">
             Ctrl + K
           </div>
         ) : ''}
@@ -92,13 +92,13 @@ export default function SearchBar() {
         )}
         {isSearchOpen && (
           <>
-            <div className="absolute border-t border-gray-300 bg-white right-0 left-0 top-full h-fit p-5 rounded-b-lg shadow-md z-100001 max-h-100 overflow-auto">
+            <div className="absolute border-t border-gray-300 bg-white dark:bg-gray-900 right-0 left-0 top-full h-fit p-5 rounded-b-lg shadow-md z-100001 max-h-100 overflow-auto">
               {searchInput === '' && (
                 <div>
                   <div className="flex items-center gap-2 flex-wrap mb-2">
                     <div>جستجو های محبوب:</div>
                     {topSearchs.map(s => (
-                      <div key={s} className="rounded-full py-1 px-2 text-sm flex gap-1 items-center border border-gray-300 text-neutral-700 hover:bg-gray-100 hover:cursor-pointer transition-colors" onClick={() => setSearchInput(s)}>
+                      <div key={s} className="rounded-full py-1 px-2 text-sm text-(--text-primary) flex gap-1 items-center border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:cursor-pointer transition-colors" onClick={() => setSearchInput(s)}>
                         <Search className="w-4 h-4" />
                         {s}
                       </div>

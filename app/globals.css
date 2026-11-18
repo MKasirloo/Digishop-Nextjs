@@ -17,6 +17,30 @@
   --bg-secondary: #EFEFED;
 }
 
+.dark {
+  --background: #121212;
+  --foreground: #F5F5F5;
+
+  --primary-color: #865CFF;
+  --offer-color: #F0525D;
+  --yellow: #FFDD00;
+
+  --text-primary: #F1F1F1;
+  --text-secondary: #A3A3A3;
+  --text-natural: #C4B5FD;
+  --text-gray: #B0B0B0;
+
+  --primary-hover: #A78BFA;
+  --mellow-hover: #292039;
+
+  --bg-primary: #1C1C1E;
+  --bg-secondary: #262629;
+
+  .border-gray-300 {
+    @apply border-gray-800!
+  }
+}
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -29,19 +53,22 @@
   --font-iransans: "IranSansX", sans-serif;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 * {
     font-family: Shabnam, sans-serif;
     box-sizing: border-box;
 }
 
 *::selection {
-    background: #0d00ff;
+    background: var(--primary-color);
     color: #fff;
 }
 
 body {
   background: var(--bg-primary);
-  color: var(--foreground);
+  /* color: var(--foreground); */
+  color: var(--text-primary);
   font-family: var(--font-shabnam) sans-serif;
 }
 

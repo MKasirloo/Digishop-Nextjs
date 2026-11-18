@@ -21,11 +21,11 @@ export default function Stories() {
             before:from-[#004cff]
             before:via-[#4d00ff]
             before:to-[#c300ff]
-            before:scale-110
+            before:scale-107
             before:-z-1
             before:rounded-full
           ">
-            <Image width={60} height={60} src="/images/stories/iPhone-18.png" alt="iPhone 18" />
+            <Image width={60} height={60} src="/images/stories/iPhone-18.png" alt="iPhone 18" className="dark:brightness-90" />
           </div>
         </div>
         <div className="w-15 h-15 flex justify-center items-center" onClick={() => setIsStoryModalOpen(true)}>
@@ -37,11 +37,11 @@ export default function Stories() {
             before:from-[#004cff]
             before:via-[#4d00ff]
             before:to-[#c300ff]
-            before:scale-110
+            before:scale-107
             before:-z-1
             before:rounded-full
           ">
-            <Image width={60} height={60} src="/images/stories/PS5.webp" alt="PS5" />
+            <Image width={60} height={60} src="/images/stories/PS5.webp" alt="PS5" className="dark:brightness-90" />
           </div>
         </div>
         <div className="w-15 h-15 flex justify-center items-center" onClick={() => setIsStoryModalOpen(true)}>
@@ -53,11 +53,11 @@ export default function Stories() {
             before:from-[#004cff]
             before:via-[#4d00ff]
             before:to-[#c300ff]
-            before:scale-110
+            before:scale-107
             before:-z-1
             before:rounded-full
           ">
-            <Image width={60} height={60} src="/images/stories/LOQ.webp" alt="LOQ" />
+            <Image width={60} height={60} src="/images/stories/LOQ.webp" alt="LOQ" className="dark:brightness-90" />
           </div>
         </div>
         <div className="w-15 h-15 flex justify-center items-center" onClick={() => setIsStoryModalOpen(true)}>
@@ -69,11 +69,11 @@ export default function Stories() {
             before:from-[#004cff]
             before:via-[#4d00ff]
             before:to-[#c300ff]
-            before:scale-110
+            before:scale-107
             before:-z-1
             before:rounded-full
           ">
-            <Image width={60} height={60} src="/images/stories/Powerbank.webp" alt="Powerbank" />
+            <Image width={60} height={60} src="/images/stories/Powerbank.webp" alt="Powerbank" className="dark:brightness-90" />
           </div>
         </div>
         <div className="w-15 h-15 flex justify-center items-center" onClick={() => setIsStoryModalOpen(true)}>
@@ -85,11 +85,12 @@ export default function Stories() {
             before:from-[#004cff]
             before:via-[#4d00ff]
             before:to-[#c300ff]
-            before:scale-110
+            before:scale-107
             before:-z-1
             before:rounded-full
           ">
             <Image width={60} height={60}
+              className="dark:brightness-90"
               src="/images/stories/iPhone-17-Pro-Max.png"
               alt="iPhone 17 Pro Max"
             />
@@ -104,11 +105,11 @@ export default function Stories() {
             before:from-[#004cff]
             before:via-[#4d00ff]
             before:to-[#c300ff]
-            before:scale-110
+            before:scale-107
             before:-z-1
             before:rounded-full
           ">
-            <Image width={60} height={60} src="/images/stories/Realme-C56.webp" alt="" />
+            <Image width={60} height={60} src="/images/stories/Realme-C56.webp" alt="" className="dark:brightness-90" />
           </div>
         </div>
         <div className="w-15 h-15 flex justify-center items-center" onClick={() => setIsStoryModalOpen(true)}>
@@ -120,11 +121,11 @@ export default function Stories() {
             before:from-[#004cff]
             before:via-[#4d00ff]
             before:to-[#c300ff]
-            before:scale-110
+            before:scale-107
             before:-z-1
             before:rounded-full
           ">
-            <Image width={60} height={60} src="/images/stories/S26-Ultra.webp" alt="S26 Ultra" />
+            <Image width={60} height={60} src="/images/stories/S26-Ultra.webp" alt="S26 Ultra" className="dark:brightness-90" />
           </div>
         </div>
         <div className="w-15 h-15 flex justify-center items-center" onClick={() => setIsStoryModalOpen(true)}>
@@ -136,11 +137,11 @@ export default function Stories() {
             before:from-[#004cff]
             before:via-[#4d00ff]
             before:to-[#c300ff]
-            before:scale-110
+            before:scale-107
             before:-z-1
             before:rounded-full
           ">
-            <Image width={60} height={60} src="/images/stories/Headphone.webp" alt="Headphone" />
+            <Image width={60} height={60} src="/images/stories/Headphone.webp" alt="Headphone" className="dark:brightness-90" />
           </div>
         </div>
       </div>

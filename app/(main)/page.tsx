@@ -61,7 +61,7 @@ export default function Page() {
             </Link>
           </div>
 
-          <div className="rounded-3xl border border-gray-100 bg-linear-to-br from-gray-50 to-violet-50 p-5 sm:p-8">
+          <div className="rounded-3xl border border-gray-100 dark:border-gray-800 bg-linear-to-br from-gray-50 dark:from-gray-900 to-violet-50 dark:to-violet-950 p-5 sm:p-8">
             <div className="flex flex-wrap justify-around gap-8">
               {categories.map((category) => (
                 <CategoryCard key={category.id} category={category} />
@@ -134,7 +134,7 @@ export default function Page() {
         <section className="my-16">
           <div className="mb-8 flex items-end justify-between">
             <div>
-              <h2 className="mt-2 text-xl font-black text-gray-900 sm:text-2xl">
+              <h2 className="mt-2 text-xl font-black text-(--text-primary) sm:text-2xl">
                 برندهای محبوب
               </h2>
               <p className="mt-2 text-sm text-gray-500">
@@ -143,7 +143,7 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="rounded-3xl border border-gray-100 bg-white p-4 shadow-sm sm:p-6">
+          <div className="rounded-3xl border border-gray-100 dark:border-gray-900 bg-(--background) p-4 shadow-sm sm:p-6">
             <BrandsSlider />
           </div>
         </section>
@@ -213,18 +213,18 @@ export default function Page() {
         </section>
 
         {/* Why DigiShop */}
-        <section className="my-16 rounded-3xl border border-violet-100 bg-linear-to-br from-white via-violet-50/60 to-white p-6 sm:p-10">
+        <section className="my-16 rounded-3xl border border-violet-100 dark:border-violet-900/50 bg-linear-to-br from-white via-violet-50/60 to-white dark:from-gray-900 dark:via-violet-950/40 dark:to-gray-900 p-6 sm:p-10">
           <div className="mb-12 text-center">
-            <span className="inline-flex items-center gap-2 rounded-full bg-violet-100 px-4 py-2 text-xs font-bold text-(--primary-color)">
+            <span className="inline-flex items-center gap-2 rounded-full bg-violet-100 dark:bg-violet-950 px-4 py-2 text-xs font-bold text-(--primary-color)">
               <ShieldCheck size={15} />
               خرید مطمئن
             </span>
 
-            <h2 className="mt-4 text-xl font-black text-gray-900 sm:text-2xl">
+            <h2 className="mt-4 text-xl font-black text-gray-900 dark:text-gray-100 sm:text-2xl">
               چرا از دیجی‌شاپ خرید کنیم؟
             </h2>
 
-            <p className="mt-3 text-sm leading-7 text-gray-500">
+            <p className="mt-3 text-sm leading-7 text-gray-500 dark:text-gray-400">
               تجربه‌ای راحت‌تر، سریع‌تر و مطمئن‌تر در خرید محصولات دیجیتال
             </p>
           </div>
@@ -234,22 +234,22 @@ export default function Page() {
               {
                 icon: ShieldCheck,
                 title: "ضمانت اصالت کالا",
-                desc: "اطمینان از اصالت محصولات خریداری‌شده",
+                desc: "اطمینان از اصالت محصولات خریداری شده",
               },
               {
                 icon: PackageCheck,
-                title: "بسته‌بندی مطمئن",
+                title: "بسته بندی مطمئن",
                 desc: "توجه به سلامت کالا هنگام آماده‌سازی سفارش",
               },
               {
                 icon: Headset,
                 title: "پشتیبانی خرید",
-                desc: "پاسخ‌گویی و راهنمایی در تمام مراحل خرید",
+                desc: "پاسخ گویی و راهنمایی در تمام مراحل خرید",
               },
               {
                 icon: Clock3,
                 title: "پیگیری سفارش",
-                desc: "دسترسی آسان به وضعیت سفارش‌های شما",
+                desc: "دسترسی آسان به وضعیت سفارش های شما",
               },
             ].map((item, index) => {
               const Icon = item.icon;
@@ -259,15 +259,15 @@ export default function Page() {
                   key={index}
                   className="group flex flex-col items-center text-center"
                 >
-                  <div className="grid size-16 place-items-center rounded-2xl border border-violet-100 bg-white text-(--primary-color) shadow-sm transition-all duration-300 group-hover:-translate-y-2 group-hover:border-violet-300 group-hover:bg-(--primary-color) group-hover:text-white group-hover:shadow-xl group-hover:shadow-violet-500/15">
+                  <div className="grid size-16 place-items-center rounded-2xl border border-violet-100 dark:border-violet-800 bg-white dark:bg-violet-950/70 text-(--primary-color) shadow-sm transition-all duration-300 group-hover:-translate-y-2 group-hover:border-(--primary-hover) group-hover:bg-(--primary-color) group-hover:text-white group-hover:shadow-xl group-hover:shadow-violet-500/15">
                     <Icon size={28} strokeWidth={1.7} />
                   </div>
 
-                  <h3 className="mt-5 text-sm font-black text-gray-800 sm:text-base">
+                  <h3 className="mt-5 text-sm font-black text-gray-800 dark:text-gray-100 sm:text-base">
                     {item.title}
                   </h3>
 
-                  <p className="mt-2 max-w-52 text-xs leading-7 text-gray-500 sm:text-sm">
+                  <p className="mt-2 max-w-52 text-xs leading-7 text-gray-500 dark:text-gray-400 sm:text-sm">
                     {item.desc}
                   </p>
                 </div>

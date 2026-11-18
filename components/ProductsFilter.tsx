@@ -36,88 +36,114 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
     let filteredProducts = search
       ? searchProducts(search, products)
       : [...products];
+
     if (categories.length > 0)
-      filteredProducts = filteredProducts.filter((p) => categories.includes(p.category));
+      filteredProducts = filteredProducts.filter((p) =>
+        categories.includes(p.category)
+      );
 
     if (inStockOnly)
       filteredProducts = filteredProducts.filter((p) => p.stock > 0);
 
     if (offerOnly)
-      filteredProducts = filteredProducts.filter((p) => p.discount_percent > 0);
+      filteredProducts = filteredProducts.filter(
+        (p) => p.discount_percent > 0
+      );
 
-    filteredProducts = filteredProducts.filter((p) => (p.price >= minPrice && p.price <= maxPrice));
+    filteredProducts = filteredProducts.filter(
+      (p) => p.price >= minPrice && p.price <= maxPrice
+    );
 
     setFilteredProducts(filteredProducts);
-  }, [products, search, categoryParam, inStockOnly, offerOnly, minPrice, maxPrice]);
+  }, [
+    products,
+    search,
+    categoryParam,
+    inStockOnly,
+    offerOnly,
+    minPrice,
+    maxPrice,
+  ]);
 
   function applyFilters() {
     const params = new URLSearchParams(searchParams.toString());
 
-    if(filters.inStockOnly)
+    if (filters.inStockOnly)
       params.set("inStockOnly", "true");
     else
       params.delete("inStockOnly");
-    
-    if(filters.offerOnly)
+
+    if (filters.offerOnly)
       params.set("offerOnly", "true");
     else
       params.delete("offerOnly");
 
-    if(filters.price.min > 0)
+    if (filters.price.min > 0)
       params.set("minPrice", String(filters.price.min));
     else
       params.delete("minPrice");
 
-    if(filters.price.max < 1_000_000_000)
+    if (filters.price.max < 1_000_000_000)
       params.set("maxPrice", String(filters.price.max));
     else
       params.delete("maxPrice");
 
-    if(search)
+    if (search)
       params.set("search", search);
 
-    if(filters.categories.length > 0)
-      params.set("categories", filters.categories.join(','));
+    if (filters.categories.length > 0)
+      params.set("categories", filters.categories.join(","));
     else
       params.delete("categories");
 
     router.push(`${pathname}?${params.toString()}`);
   }
 
-  function handlePriceChange(e: ChangeEvent<HTMLInputElement>, type: string) {
-    const value = Number(e.target.value.replace(/[٬,،]/g, "").replace(/[۰-۹]/g, d => String(d.charCodeAt(0) - 1776)));
-  
+  function handlePriceChange(
+    e: ChangeEvent<HTMLInputElement>,
+    type: string
+  ) {
+    const value = Number(
+      e.target.value
+        .replace(/[٬,،]/g, "")
+        .replace(/[۰-۹]/g, (d) =>
+          String(d.charCodeAt(0) - 1776)
+        )
+    );
+
     if (Number.isNaN(value)) return;
-  
+
     if (type === "min") {
       if (value > filters.price.max || value < 0) return;
-  
-      setFilters(prev => ({
+
+      setFilters((prev) => ({
         ...prev,
         price: {
           ...prev.price,
-          min: value
-        }
+          min: value,
+        },
       }));
     } else {
-      if (value < filters.price.min || value > 1_000_000_000) return;
-  
-      setFilters(prev => ({
+      if (value < filters.price.min || value > 1_000_000_000)
+        return;
+
+      setFilters((prev) => ({
         ...prev,
         price: {
           ...prev.price,
-          max: value
-        }
+          max: value,
+        },
       }));
     }
   }
 
   return (
-    <div className="flex flex-col justify-between p-2 relative max-h-full">
-      <ul className="w-full overflow-y-auto font-medium *:p-2 *:border-b *:border-gray-300 *:last:border-none *:w-full">
+    <div className="flex flex-col justify-between p-2 relative max-h-full text-gray-800 dark:text-gray-100">
+      <ul className="w-full overflow-y-auto font-medium *:p-2 *:border-b *:border-gray-300 dark:*:border-gray-700 *:last:border-none *:w-full">
         <li>
           <div className="flex justify-between items-center gap-2 h-10">
-            <p>فقط نمایش کالا های موجود: </p>
+            <p>فقط نمایش کالا های موجود:</p>
+
             <Switch
               checked={filters.inStockOnly}
               onChange={() =>
@@ -129,83 +155,100 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
             />
           </div>
         </li>
+
         <li>
           <div className="flex justify-between items-center h-10">
-            <p>فقط نمایش کالا های تخفیف دار: </p>
+            <p>فقط نمایش کالا های تخفیف دار:</p>
+
             <Switch
               checked={filters.offerOnly}
               onChange={() =>
-                setFilters((prev) => ({ ...prev, offerOnly: !prev.offerOnly }))
+                setFilters((prev) => ({
+                  ...prev,
+                  offerOnly: !prev.offerOnly,
+                }))
               }
               className="peer-checked:bg-(--offer-color)!"
             />
           </div>
         </li>
+
         <li>
           <details className="group">
-            <summary className="flex justify-between items-center h-10 hover:cursor-pointer">
+            <summary className="flex justify-between items-center h-10 hover:cursor-pointer hover:text-(--primary-color)">
               <p>فیلتر قیمت</p>
+
               <ChevronDown className="group-open:rotate-180 transition-transform" />
             </summary>
+
             <div className="w-full">
               <div className="grid grid-cols-[auto_1fr_auto] my-5">
                 <label htmlFor="min-filter" className="text-(--text-secondary)">
                   از
                 </label>
+
                 <input
                   id="min-filter"
                   type="text"
                   value={filters.price.min.toLocaleString("fa-IR")}
                   step={500000}
                   onChange={(e) => handlePriceChange(e, "min")}
-                  className="w-full outline-none border-b border-gray-300 text-center text-xl transition-colors focus:border-(--primary-color)"
+                  className="w-full bg-transparent text-gray-900 dark:text-gray-100 outline-none border-b border-gray-300 dark:border-gray-700 text-center text-xl transition-colors focus:border-(--primary-color)"
                 />
-                <TomanIcon width={20} />
+
+                <TomanIcon width={20} className="dark:invert" />
               </div>
+
               <div className="grid grid-cols-[auto_1fr_auto] my-5">
                 <label htmlFor="max-filter" className="text-(--text-secondary)">
                   تا
                 </label>
+
                 <input
                   id="max-filter"
                   type="text"
                   value={filters.price.max.toLocaleString("fa-IR")}
                   step={500000}
                   onChange={(e) => handlePriceChange(e, "max")}
-                  className="w-full outline-none border-b border-gray-300 text-center text-xl transition-colors focus:border-(--primary-color)"
+                  className="w-full bg-transparent text-gray-900 dark:text-gray-100 outline-none border-b border-gray-300 dark:border-gray-700 text-center text-xl transition-colors focus:border-(--primary-color)"
                 />
-                <TomanIcon width={20} />
+
+                <TomanIcon width={20} className="dark:invert" />
               </div>
+
               <div
                 dir="ltr"
                 className="
-                flex items-center relative h-5 *:absolute *:pointer-events-none *:bg-none *:appearance-none *:w-full *:[-webkit-appearance:none]
-                [&>*::-webkit-slider-thumb]:pointer-events-auto
-                [&>*::-webkit-slider-thumb]:appearance-none
-                [&>*::-webkit-slider-thumb]:w-5
-                [&>*::-webkit-slider-thumb]:h-5
-                [&>*::-webkit-slider-thumb]:rounded-full
-                [&>*::-webkit-slider-thumb]:bg-(--primary-color)
-                [&>*::-webkit-slider-thumb]:cursor-grab
-
-                [&>*::-moz-range-thumb]:pointer-events-auto
-                [&>*::-moz-range-thumb]:appearance-none
-                [&>*::-moz-range-thumb]:w-5
-                [&>*::-moz-range-thumb]:h-5
-                [&>*::-moz-range-thumb]:rounded-full
-                [&>*::-moz-range-thumb]:bg-(--primary-color)
-                [&>*::-moz-range-thumb]:cursor-grab
+                  flex items-center relative h-5
+                  *:absolute *:pointer-events-none *:bg-none
+                  *:appearance-none *:w-full *:[-webkit-appearance:none]
+                  [&>*::-webkit-slider-thumb]:pointer-events-auto
+                  [&>*::-webkit-slider-thumb]:appearance-none
+                  [&>*::-webkit-slider-thumb]:w-5
+                  [&>*::-webkit-slider-thumb]:h-5
+                  [&>*::-webkit-slider-thumb]:rounded-full
+                  [&>*::-webkit-slider-thumb]:bg-(--primary-color)
+                  [&>*::-webkit-slider-thumb]:cursor-grab
+                  [&>*::-moz-range-thumb]:pointer-events-auto
+                  [&>*::-moz-range-thumb]:appearance-none
+                  [&>*::-moz-range-thumb]:w-5
+                  [&>*::-moz-range-thumb]:h-5
+                  [&>*::-moz-range-thumb]:rounded-full
+                  [&>*::-moz-range-thumb]:bg-(--primary-color)
+                  [&>*::-moz-range-thumb]:cursor-grab
                 "
               >
-                <div className="absolute h-1 bg-gray-300 rounded-lg"></div>
+                <div className="absolute h-1 bg-gray-300 dark:bg-gray-700 rounded-lg"></div>
+
                 <div
                   className="rounded-full h-1 absolute bg-(--primary-color)"
                   style={{
-                    left: Math.round(filters.price.min / 10_000_000) + '%',
-                    right: (100 - Math.round(filters.price.max / 10_000_000)) + '%',
-                    width: "auto"
+                    left: Math.round(filters.price.min / 10_000_000) + "%",
+                    right: 100 - Math.round(filters.price.max / 10_000_000) + "%",
+                    width: "auto",
                   }}
                 ></div>
+
                 <input
                   id="minPriceSlider"
                   type="range"
@@ -216,6 +259,7 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
                   onChange={(e) => handlePriceChange(e, "min")}
                   className="z-2"
                 />
+
                 <input
                   id="maxPriceSlider"
                   type="range"
@@ -230,22 +274,22 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
             </div>
           </details>
         </li>
+
         <li>
           <details className="group">
-            <summary className="flex justify-between items-center h-10 hover:cursor-pointer">
+            <summary className="flex justify-between items-center h-10 hover:cursor-pointer hover:text-(--primary-color)">
               <p>دسته بندی ها</p>
+
               <ChevronDown className="group-open:rotate-180 transition-transform" />
             </summary>
+
             <div className="w-full">
-              <ul className="divide-y divide-gray-300/70 px-2">
+              <ul className="divide-y divide-gray-300/70 dark:divide-gray-700/70 px-2">
                 {allCategories.map((c) => (
-                  <li
-                    key={c.id}
-                    className="text-(--text-primary)"
-                    >
+                  <li key={c.id} className="text-(--text-primary)">
                     <label
                       htmlFor={`category-checkbox-${c.id}`}
-                      className="flex items-center gap-2 cursor-pointer w-full hover:bg-gray-100/90 transition-colors p-2"
+                      className="flex items-center gap-2 cursor-pointer w-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors p-2 rounded-md"
                     >
                       <input
                         id={`category-checkbox-${c.id}`}
@@ -263,13 +307,11 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
                           }))
                         }
                       />
-                      <span
-                        className="w-5 h-5 border-2 border-black rounded-md flex justify-center items-center
-                        peer-checked:border-(--primary-color)
-                        peer-checked:bg-(--primary-color)"
-                      >
-                        <Check color="white" />
+
+                      <span className="w-5 h-5 shrink-0 border-2 border-gray-900 dark:border-gray-500 rounded-md flex justify-center items-center peer-checked:border-(--primary-color) peer-checked:bg-(--primary-color) *:hidden peer-checked:*:block">
+                        <Check className="text-white" size={16} />
                       </span>
+
                       {c.name_fa}
                     </label>
                   </li>
@@ -279,7 +321,10 @@ export default function ProductsFilter({ products, setFilteredProducts }) {
           </details>
         </li>
       </ul>
-      <Button className="btn-primary w-full py-2" onClick={applyFilters}>اعمال فیلتر ها</Button>
+
+      <Button className="btn-primary w-full py-2" onClick={applyFilters}>
+        اعمال فیلتر ها
+      </Button>
     </div>
   );
 }
