@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import Image from "next/image";
 import * as Icons from "@/app/assets/icons";
@@ -7,35 +8,32 @@ export default function ProductCard({ product }) {
     <Link
       href={`/products/${product.id}`}
       className="
-        flex flex-col justify-between shrink-0 min-h-[350px]
-        p-4 w-full text-sm
-        bg-white dark:bg-gray-900
-        text-gray-900 dark:text-gray-100
-        border border-gray-300 dark:border-gray-800
-        -m-[0.5px]
-        hover:shadow-xl dark:hover:shadow-black/30
-        dark:hover:border-gray-600
-        transition-all hover:z-5 relative
+        relative flex w-full min-h-[350px] shrink-0 flex-col justify-between
+        -m-[0.5px] border border-gray-300 p-4 text-sm
+        bg-(--surface) text-(--text-primary)
+        hover:z-5 hover:shadow-xl
+        dark:border-gray-800 dark:hover:border-gray-600 dark:hover:shadow-black/30
+        transition-all
       "
     >
       {product.discount_percent > 0 && (
-        <div className="absolute left-0 top-0 py-1 px-2 bg-(--offer-color) text-white rounded-br-2xl text-xs -mt-px -ml-px">
+        <div className="absolute left-0 top-0 -ml-px -mt-px rounded-br-2xl bg-(--offer-color) px-2 py-1 text-xs text-white">
           فروش ویژه!
         </div>
       )}
 
-      <div className="product-card__info">
-        <div className="w-full h-50 center p-2.5">
+      <div>
+        <div className="center h-50 w-full p-2.5">
           <Image
             src={product.image}
             alt={product.name}
             width={200}
             height={300}
-            className="object-contain h-auto"
+            className="h-auto object-contain"
           />
         </div>
 
-        <div className="font-medium mt-3 mb-2 leading-6 text-gray-900 dark:text-gray-100">
+        <div className="mb-2 mt-3 font-medium leading-6 text-(--text-primary)">
           <p>{product.name}</p>
         </div>
       </div>
@@ -47,18 +45,14 @@ export default function ProductCard({ product }) {
           </span>
 
           {product.discount_percent !== 0 && (
-            <span className="bg-(--offer-color) text-white rounded-lg px-1">
-              <div className="translate-y-px">
-                {product.discount_percent}%
-              </div>
+            <span className="rounded-lg bg-(--offer-color) px-1 text-white">
+              {product.discount_percent}%
             </span>
           )}
         </div>
 
-        <div className="flex items-center flex-row-reverse mt-auto gap-1 font-bold text-(--text-natural)! text-base">
-          <span>
-            <Icons.TomanIcon className="w-4 dark:invert" />
-          </span>
+        <div className="mt-1 flex flex-row-reverse items-center gap-1 font-bold text-(--text-natural) text-base">
+          <Icons.TomanIcon className="w-4 dark:invert" />
 
           <span>
             {(
