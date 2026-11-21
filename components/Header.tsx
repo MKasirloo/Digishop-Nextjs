@@ -224,15 +224,22 @@ export default function Header({ cartCount = 0 }: { cartCount?: number }) {
         <div
           className={`md:hidden ${!isMobileMenuOpen ? "translate-x-full" : "translate-x-0"} fixed flex flex-col justify-between top-0 bottom-0 right-0 transition-transform bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 w-3/5 z-100000000`}
         >
-          <div className="bg-violet-50/70 dark:bg-gray-800 flex justify-between items-center py-4 px-3 absolute w-full h-20">
-            <img src="/images/logo.png" alt="Logo" className="sm:w-40 w-35" />
+          <div className="bg-violet-50/70 dark:bg-gray-900 flex justify-between items-center py-4 px-3 absolute w-full h-20">
+            <Image width={100} height={40} src="/images/logo.png" alt="Logo" className="sm:max-w-40 w-28 shrink" />
 
-            <button
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="flex size-9 items-center justify-center rounded-xl bg-white dark:bg-gray-700 text-xl text-gray-600 dark:text-gray-200 shadow-sm hover:text-(--primary-color)"
-            >
-              <X />
-            </button>
+            <div className="flex items-center gap-2">
+              <div className="flex size-9 items-center justify-center rounded-xl bg-white dark:bg-gray-700 text-xl text-gray-600 dark:text-gray-200 shadow-sm hover:text-(--primary-color) transition-colors">
+                <ThemeToggle />
+              </div>
+
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex size-9 items-center justify-center rounded-xl bg-white dark:bg-gray-700 text-xl text-gray-600 dark:text-gray-200 shadow-sm hover:text-(--primary-color) transition-colors"
+                aria-label="بستن منو"
+              >
+                <X />
+              </button>
+            </div>
           </div>
 
           <div className="flex-1 mt-20 overflow-auto">

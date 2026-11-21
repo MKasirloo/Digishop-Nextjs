@@ -34,7 +34,7 @@ export default function MainSlider() {
       <SwiperSlide>
         <Link href="/products" >
           <div className="w-full h-100 max-md:h-[250px]">
-            <Image src="/images/posters/Digishop.png" alt="Digishop" width={1500} height={400} className="object-cover" loading="eager" />
+            <Image src="/images/posters/digishop.png" alt="Digishop" width={1500} height={400} className="object-cover" loading="eager" />
           </div>
         </Link>
       </SwiperSlide>

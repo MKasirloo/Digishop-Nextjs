@@ -11,7 +11,7 @@ export default function Page() {
   return(
     <>
       <div className="w-full h-screen flex justify-center items-center">
-        <div className="w-100 h-80 md:border md:border-gray-300 rounded-2xl px-6 flex flex-col justify-between">
+        <div className="w-100 h-80 md:border md:border-gray-300 dark:md:border-gray-800 rounded-2xl px-6 flex flex-col justify-between">
           <div className="flex justify-center py-6">
             <a href="/">
               <img src="/images/logo.png" alt="logo" className="w-50" />
@@ -72,7 +72,7 @@ export default function Page() {
                       setCode(newCode);
                     }
                   }}
-                  className="border border-gray-400 outline-none transition-all w-12 h-15 rounded-lg text-center text-2xl focus:border-(--primary-color)!"
+                  className="border border-gray-300 outline-none transition-all w-12 h-15 rounded-lg text-center text-2xl focus:border-(--primary-color)!"
                 />
               ))}
             </div>

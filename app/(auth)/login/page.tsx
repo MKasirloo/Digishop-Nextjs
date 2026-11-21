@@ -50,7 +50,7 @@ export default function Page() {
                 minLength={11}
                 dir="ltr"
               />
-              <label htmlFor="phoneNumber" className={`peer-focus:top-0 peer-focus:text-black peer-focus:bg-white absolute left-1 top-1/2 -translate-y-1/2 mr-2.5 transition-all bg-transparent p-1 text-(--text-secondary) hover:cursor-text ${phoneNumber !== '' ? "top-0! bg-white!" : ''}`}>شماره موبایل...</label>
+              <label htmlFor="phoneNumber" className={`peer-focus:top-0 peer-focus:text-black peer-focus:bg-white dark:peer-focus:bg-(--bg-primary)! absolute left-1 top-1/2 -translate-y-1/2 mr-2.5 transition-all bg-transparent p-1 text-(--text-secondary) hover:cursor-text ${phoneNumber !== '' ? "top-0! bg-white! dark:bg-(--bg-primary)!" : ''}`}>شماره موبایل...</label>
             </div>
           </form>
           <Link href="/verification" className="block w-full">
