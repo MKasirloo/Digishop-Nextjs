@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import localFont from 'next/font/local'
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import ThemeProvider from "@/components/ThemeProvider";
-import type { Viewport } from "next";
+import type { Viewport, Metadata } from "next";
 
 export const viewport: Viewport = {
   themeColor: "#4d00ff"
@@ -59,6 +58,22 @@ const lalezar = localFont({
 export const metadata: Metadata = {
   title: "دیجی شاپ",
   description: "فروشگاه اینترنتی دیجی شاپ",
+  openGraph: {
+    title: "دیجی شاپ",
+    description: "فروشگاه اینترنتی دیجی شاپ",
+    url: "https://digishop-nextjs.vercel.app",
+    siteName: "DigiShop",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "DigiShop",
+      },
+    ],
+    locale: "fa_IR",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
