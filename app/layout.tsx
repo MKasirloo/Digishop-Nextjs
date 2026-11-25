@@ -4,6 +4,11 @@ import localFont from 'next/font/local'
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
 import ThemeProvider from "@/components/ThemeProvider";
+import type { Viewport } from "next";
+
+export const viewport: Viewport = {
+  themeColor: "#4d00ff"
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
